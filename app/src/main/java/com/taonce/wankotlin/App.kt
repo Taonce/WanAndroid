@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.widget.Toast
 import com.taonce.utilmodule.toast
+import com.tencent.bugly.crashreport.CrashReport
 import kotlin.math.min
 
 
@@ -24,6 +25,7 @@ class App : Application() {
     override fun onCreate() {
         mInstance = this
         super.onCreate()
+        CrashReport.initCrashReport(this@App,"6ecde0d53a",false)
     }
 
 }

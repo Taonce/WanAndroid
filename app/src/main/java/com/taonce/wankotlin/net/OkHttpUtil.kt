@@ -55,7 +55,6 @@ class OkHttpUtil private constructor() {
                 .readTimeout(readTime, TimeUnit.SECONDS)
                 .writeTimeout(writeTime, TimeUnit.SECONDS)
                 .addInterceptor(LogInterceptor(okHttpLog))
-                .addInterceptor(HeadIntercept())
                 .cache(cache)
                 .build()
         }
@@ -65,7 +64,7 @@ class OkHttpUtil private constructor() {
     // 自定义OkHttpLog
     class OkHttpLog : LogInterceptor.Logger {
         override fun log(message: String?) {
-            Log.d("taonce", message)
+            Log.d("okhttp", message)
         }
     }
 
@@ -73,10 +72,12 @@ class OkHttpUtil private constructor() {
     class HeadIntercept : Interceptor {
         override fun intercept(chain: Interceptor.Chain?): Response? {
             return chain?.let {
-                it.proceed(it.request()
-                    .newBuilder()
-                    .addHeader("key", "key")
-                    .build())
+                it.proceed(
+                    it.request()
+                        .newBuilder()
+                        .addHeader("key", "key")
+                        .build()
+                )
             }
         }
     }

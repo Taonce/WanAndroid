@@ -1,5 +1,6 @@
 package com.taonce.wankotlin.net
 
+import com.taonce.wankotlin.base.Constant
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -27,7 +28,7 @@ class RetrofitUtil private constructor() {
     private fun getRetrofit(): Retrofit? {
         if (null == retrofit) {
             retrofit = Retrofit.Builder()
-                .baseUrl("https://gank.io/api/")
+                .baseUrl(Constant.base_url)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)

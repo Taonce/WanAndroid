@@ -1,9 +1,12 @@
 package com.taonce.wankotlin.net
 
 import com.taonce.wankotlin.base.BaseBean
+import com.taonce.wankotlin.base.Constant
+import com.taonce.wankotlin.bean.HotKeyBean
+import com.taonce.wankotlin.bean.LoginBean
+import com.taonce.wankotlin.bean.QueryBean
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 
 /**
@@ -16,14 +19,45 @@ import retrofit2.http.Path
 interface BaseService {
 
     /**
-     * 根据category获取Android、ios等数据
-     * category：类型
-     * count：分页的一页数据
-     * page：第几页
+     * 搜索热词
      */
-    @GET("search/query/listview/category/{category}/count/{count}/page/{page}")
-    fun getCategoryData(@Path("category") category: String,
-                        @Path("count") count: Int,
-                        @Path("page") page: Int): Observable<BaseBean>
+    @GET(value = Constant.wan_hot_key)
+    fun getHotKey(): Observable<HotKeyBean>
 
+    /**
+     * 搜索指定内容
+     */
+    @POST(value = Constant.wan_query + "{index}/json")
+    @FormUrlEncoded
+    fun query(
+        @Path(value = "index") index: Int = 0,
+        @Field(value = "k") key: String
+    ): Observable<QueryBean>
+
+    /**
+     * 登录
+     */
+    @POST(value = Constant.wan_login)
+    @FormUrlEncoded
+    fun login(
+        @Field(value = "username") userName: String,
+        @Field(value = "password") passWord: String
+    ): Observable<LoginBean>
+
+    /**
+     * 注册
+     */
+    @POST(value = Constant.wan_register)
+    @FormUrlEncoded
+    fun register(
+        @Field(value = "username") userName: String,
+        @Field(value = "password") passWord: String,
+        @Field(value = "repassword") rePassWord: String
+    ): Observable<BaseBean>
+
+    /**
+     * 退出登录
+     */
+    @GET(value = Constant.wan_logout)
+    fun logout(): Observable<BaseBean>
 }

@@ -30,17 +30,14 @@ interface BaseObserver<T : BaseBean> : Observer<T> {
     }
 
     override fun onNext(value: T) {
-        // 这里面还可以加入额外的一些code判断，因为我这没返回code，所以就不加了
-        // gank接口返回的是error，所以这里用error来演示
         value.let {
-            if (1 == it.errorCode) {
+            if (0 == it.errorCode) {
                 onSuccess(it)
             } else {
                 App.mInstance.toast("接口返回错误")
                 onFailed()
             }
         }
-        value ?: App.mInstance.toast("无数据")
     }
 
     override fun onError(e: Throwable) {
