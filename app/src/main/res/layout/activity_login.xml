@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/login_bg">
+
+    <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/iv_login"
+            android:contentDescription="@null"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            app:layout_constraintBottom_toTopOf="@+id/layout_name"
+            app:layout_constraintVertical_chainStyle="packed"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:counterEnabled="true"
+            app:errorEnabled="true"
+            app:layout_constraintTop_toBottomOf="@+id/iv_login"
+            android:layout_marginTop="20dp"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/layout_password">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_name"
+                android:inputType="text"
+                android:hint="@string/username"
+                android:gravity="start" tools:ignore="Autofill"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:counterEnabled="true"
+            app:errorEnabled="true"
+            app:layout_constraintTop_toBottomOf="@+id/layout_name"
+            android:id="@+id/layout_password"
+            app:layout_constraintBottom_toTopOf="@id/layout_repassword"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/et_password"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:gravity="start" tools:ignore="Autofill"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_repassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:counterEnabled="true"
+            app:errorEnabled="true"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@+id/layout_password"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/bt_login">
+
+        <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_repassword"
+                android:inputType="text"
+                android:hint="@string/username"
+                android:gravity="start" tools:ignore="Autofill"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_repassword"
+            app:layout_constraintBottom_toTopOf="@id/bt_register"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/bt_login"
+            android:text="@string/login"
+            android:textAllCaps="false"
+            android:background="@drawable/login_bt"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowColor="#A8A8A8"
+            android:shadowRadius="5"/>
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/bt_register"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/bt_login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:textAllCaps="false"
+            android:text="@string/register"
+            android:background="@drawable/login_bt"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowColor="#A8A8A8"
+            android:shadowRadius="5"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

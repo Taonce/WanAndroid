@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
         RetrofitUtil.mInstance.getService().logout()
             .compose(RxSchedulers.observableTransformer())
             .subscribe(object : BaseObserver<BaseBean> {
