@@ -14,7 +14,11 @@ import com.taonce.utilmodule.showError
  * Desc: [RecyclerView.Adapter]基类
  */
 
-abstract class BaseAdapter<T>(private val ctx: Context, private val layoutRes: Int, private val mData: MutableList<T>) :
+abstract class BaseAdapter<T>(
+    private val ctx: Context,
+    private val layoutRes: Int,
+    private val mData: MutableList<T>?
+) :
     RecyclerView.Adapter<BaseHolder>() {
 
     // 利用闭包实现点击事件的lambda语法
@@ -48,7 +52,7 @@ abstract class BaseAdapter<T>(private val ctx: Context, private val layoutRes: I
     }
 
     override fun getItemCount(): Int {
-        return mData.size
+        return mData?.size ?: 0
     }
 
     /**
@@ -60,7 +64,7 @@ abstract class BaseAdapter<T>(private val ctx: Context, private val layoutRes: I
      * 添加一项数据
      */
     fun addData(item: T) {
-        mData.add(item)
+        mData?.add(item)
         notifyDataSetChanged()
     }
 
@@ -71,9 +75,9 @@ abstract class BaseAdapter<T>(private val ctx: Context, private val layoutRes: I
      */
     fun addListData(listData: MutableList<T>, isDelete: Boolean) {
         if (isDelete) {
-            mData.clear()
+            mData?.clear()
         }
-        mData.addAll(listData)
+        mData?.addAll(listData)
         notifyDataSetChanged()
     }
 
@@ -83,8 +87,8 @@ abstract class BaseAdapter<T>(private val ctx: Context, private val layoutRes: I
      */
     fun deletePositionData(position: Int) {
         // 防止position越界
-        if (position > 0 && position < mData.size) {
-            mData.remove(mData[position])
+        if (position in 1..(itemCount - 1)) {
+            mData?.remove(mData[position])
             notifyDataSetChanged()
         } else {
             showError(msg = "delete item failed, position error!")

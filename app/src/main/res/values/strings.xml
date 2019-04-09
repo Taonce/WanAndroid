@@ -2,6 +2,7 @@
     <string name="app_name">WanKotlin</string>
     <string name="password">Password</string>
     <string name="username">UserName</string>
+    <string name="repassword">RePassword</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="interface_error">接口挂了</string>
@@ -11,4 +12,9 @@
     <string name="connect_timeout">连接超时</string>
     <string name="request_timeout">请求超时</string>
     <string name="parse_error">解析错误</string>
+    <string name="article">Article</string>
+
+    <string name="tree">知识体系</string>
+    <string name="chapter">Chapters</string>
+    <string name="hot_key">HotKey</string>
 </resources>

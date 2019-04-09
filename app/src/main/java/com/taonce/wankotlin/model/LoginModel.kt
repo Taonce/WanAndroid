@@ -1,6 +1,5 @@
 package com.taonce.wankotlin.model
 
-import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.bean.LoginBean
 import com.taonce.wankotlin.contract.ILoginModel
 import com.taonce.wankotlin.net.BaseObserver
@@ -13,7 +12,6 @@ import com.taonce.wankotlin.net.RxSchedulers
  * Date: 2019/4/8
  * Project: WanKotlin
  * Desc:
- * Copyright (C) 2019 Aulton. All rights reserved.
  */
 
 class LoginModel : ILoginModel {
@@ -27,8 +25,8 @@ class LoginModel : ILoginModel {
             .getService()
             .register(username, password, rePassword)
             .compose(RxSchedulers.observableTransformer())
-            .subscribe(object : BaseObserver<BaseBean> {
-                override fun onSuccess(value: BaseBean) {
+            .subscribe(object : BaseObserver<LoginBean> {
+                override fun onSuccess(value: LoginBean) {
                     listener.onGetRegister(value)
                 }
 

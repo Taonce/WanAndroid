@@ -22,8 +22,7 @@ object Constant {
      * 公众号
      */
     const val wan_wxarticle_chapters = "wxarticle/chapters/json" // wxarticle_chapters
-    const val wan_wxarticle_list = "wxarticle/list/json" // wxarticle_list
-    const val wan_wxarticle_history = "wxarticle/list/" // list/405/1/json?k=Java
+    const val wan_wxarticle_list = "wxarticle/list/" // wxarticle_list
 
     /**
      * 文章体系
@@ -45,4 +44,9 @@ object Constant {
      */
     const val wan_hot_key = "hotkey/json" // hot_key
     const val wan_query = "article/query/" // index/post: 'index' in url, 'k' in body
+
+    /**
+     * 首页文章
+     */
+    const val wan_home_page = "article/list/" // {index}/json
 }

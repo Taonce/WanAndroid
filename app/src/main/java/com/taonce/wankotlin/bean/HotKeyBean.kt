@@ -3,7 +3,7 @@ package com.taonce.wankotlin.bean
 import com.taonce.wankotlin.base.BaseBean
 
 data class HotKeyBean(
-    val data: List<DataItem>?
+    val data: MutableList<DataItem>?
 ) : BaseBean() {
     data class DataItem(
         val visible: Int = 0,

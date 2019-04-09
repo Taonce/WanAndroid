@@ -1,6 +1,8 @@
 package com.taonce.wankotlin.presenter
 
-import com.taonce.wankotlin.base.BaseBean
+import android.content.Context
+import android.text.TextUtils
+import com.taonce.utilmodule.toast
 import com.taonce.wankotlin.base.BasePresenter
 import com.taonce.wankotlin.bean.LoginBean
 import com.taonce.wankotlin.contract.ILoginModel
@@ -19,26 +21,48 @@ class LoginPresenter(private val view: ILoginView) :
     BasePresenter<ILoginView>(),
     ILoginModel.OnGetLoginListener,
     ILoginModel.OnGetRegisterListener {
+
     private val model = LoginModel()
 
-    fun login(userName: String, password: String) {
-        model.getLogin(userName, password, this)
+    fun login(context: Context, userName: String, password: String) {
+        when {
+            TextUtils.isEmpty(userName) -> {
+                context.toast("userName can not be empty! ")
+                return
+            }
+            TextUtils.isEmpty(password) -> {
+                context.toast("password can not be empty! ")
+                return
+            }
+            else -> model.getLogin(userName, password, this)
+        }
     }
 
-    fun register(userName: String, password: String, rePassword: String) {
-        model.getRegister(userName, password, rePassword, this)
+    fun register(context: Context, userName: String, password: String, rePassword: String) {
+        when {
+            TextUtils.isEmpty(userName) -> {
+                context.toast("userName can not be empty! ")
+                return
+            }
+            TextUtils.isEmpty(password) -> {
+                context.toast("password can not be empty! ")
+                return
+            }
+            TextUtils.isEmpty(rePassword) -> {
+                context.toast("rePassword can not be empty! ")
+                return
+            }
+            else -> model.getRegister(userName, password, rePassword, this)
+        }
     }
 
     override fun onGetLogin(bean: LoginBean?) {
         bean?.let {
             view.showLoginResult(it)
         }
-        bean ?: let {
-
-        }
     }
 
-    override fun onGetRegister(bean: BaseBean?) {
+    override fun onGetRegister(bean: LoginBean?) {
         bean?.let { view.showRegisterResult(bean) }
     }
 }

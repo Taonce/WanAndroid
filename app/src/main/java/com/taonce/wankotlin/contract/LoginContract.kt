@@ -1,6 +1,5 @@
 package com.taonce.wankotlin.contract
 
-import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.bean.LoginBean
 import com.taonce.wankotlin.ui.inter.IBaseView
 
@@ -15,7 +14,7 @@ import com.taonce.wankotlin.ui.inter.IBaseView
 interface ILoginView : IBaseView {
     fun showLoginResult(bean: LoginBean)
 
-    fun showRegisterResult(bean: BaseBean)
+    fun showRegisterResult(bean: LoginBean)
 }
 
 interface ILoginModel {
@@ -28,6 +27,6 @@ interface ILoginModel {
     fun getRegister(username: String, password: String, rePassword: String, listener: OnGetRegisterListener)
 
     interface OnGetRegisterListener {
-        fun onGetRegister(bean: BaseBean?)
+        fun onGetRegister(bean: LoginBean?)
     }
 }

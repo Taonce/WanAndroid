@@ -6,7 +6,9 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.text.TextUtils
 import android.view.View
+import androidx.core.view.marginStart
 import com.taonce.utilmodule.getDeviceWidth
+import com.taonce.utilmodule.showInfo
 import com.taonce.utilmodule.toast
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseBean
@@ -22,20 +24,27 @@ import kotlinx.android.synthetic.main.activity_login.*
  * Author: taoyongxiang
  * Date: 2019/4/8
  * Project: WanKotlin
- * Desc:
+ * Desc: 登录注册界面
  */
 
 class LoginActivity : BaseMVPActivity<ILoginView, LoginPresenter>(), ILoginView {
-
 
     private val loginPresenter: LoginPresenter by lazy { getPresenter() }
     private lateinit var userName: String
     private lateinit var password: String
     private lateinit var rePassword: String
+    private var btTranslator: ObjectAnimator? = null
+    private var btAlpha: ObjectAnimator? = null
+    private var etTranslator: ObjectAnimator? = null
+    private var etAlpha: ObjectAnimator? = null
+    // 登录按钮位移距离屏幕左侧的长度
+    private var marginX: Float = 0.0f
 
     override fun getLayoutId(): Int = R.layout.activity_login
 
     override fun initData() {
+        marginX = layout_name.marginStart.toFloat()
+        showInfo(msg = "initData margin x is $marginX")
     }
 
     override fun initView() {
@@ -46,17 +55,7 @@ class LoginActivity : BaseMVPActivity<ILoginView, LoginPresenter>(), ILoginView 
         bt_login.setOnClickListener {
             userName = et_name.text.toString().trim()
             password = et_password.text.toString().trim()
-            when {
-                TextUtils.isEmpty(userName) -> {
-                    toast("userName can not be empty! ")
-                    return@setOnClickListener
-                }
-                TextUtils.isEmpty(password) -> {
-                    toast("password can not be empty! ")
-                    return@setOnClickListener
-                }
-                else -> loginPresenter.login(userName, password)
-            }
+            loginPresenter.login(this@LoginActivity, userName, password)
         }
         bt_register.setOnClickListener {
             when (bt_login.visibility) {
@@ -74,15 +73,38 @@ class LoginActivity : BaseMVPActivity<ILoginView, LoginPresenter>(), ILoginView 
     }
 
     private fun translate() {
+        showInfo(msg = "margin x is: $marginX")
         // bt_login missing
-        val x: Float = bt_login.x
-        val btTranslator: ObjectAnimator = ObjectAnimator.ofFloat(bt_login, "x", x, -bt_login.width.toFloat())
-        val btAlpha: ObjectAnimator = ObjectAnimator.ofFloat(bt_login, "alpha", 1f, 0f)
+        btTranslator = ObjectAnimator.ofFloat(bt_login, "x", marginX, -bt_login.width.toFloat())
+        btAlpha = ObjectAnimator.ofFloat(bt_login, "alpha", 1f, 0f)
         // et_repassword enter
         layout_repassword.visibility = View.VISIBLE
-        val etTranslator: ObjectAnimator = ObjectAnimator.ofFloat(layout_repassword, "x", getDeviceWidth().toFloat(), x)
-        val etAlpha: ObjectAnimator = ObjectAnimator.ofFloat(layout_repassword, "alpha", 0.1f, 1.0f)
-        val animatorSet: AnimatorSet = AnimatorSet()
+        etTranslator = ObjectAnimator.ofFloat(layout_repassword, "x", getDeviceWidth().toFloat(), marginX)
+        etAlpha = ObjectAnimator.ofFloat(layout_repassword, "alpha", 0.1f, 1.0f)
+        startAnimator(bt_login)
+    }
+
+    private fun register() {
+        userName = et_name.text.toString().trim()
+        password = et_password.text.toString().trim()
+        rePassword = et_repassword.text.toString().trim()
+        loginPresenter.register(this@LoginActivity, userName, password, rePassword)
+    }
+
+    override fun showRegisterResult(bean: LoginBean) {
+        // bt_login enter
+        val x: Float = et_repassword.x
+        bt_login.visibility = View.VISIBLE
+        btTranslator = ObjectAnimator.ofFloat(bt_login, "x", getDeviceWidth().toFloat(), marginX)
+        btAlpha = ObjectAnimator.ofFloat(bt_login, "alpha", 0.1f, 1f)
+        // et_repassword missing
+        etTranslator = ObjectAnimator.ofFloat(layout_repassword, "x", marginX, -(et_repassword.width).toFloat())
+        etAlpha = ObjectAnimator.ofFloat(layout_repassword, "alpha", 1f, 0f)
+        startAnimator(layout_password)
+    }
+
+    private fun startAnimator(view: View) {
+        val animatorSet = AnimatorSet()
         animatorSet.apply {
             playTogether(btTranslator, btAlpha, etAlpha, etTranslator)
             duration = 1000L
@@ -90,34 +112,17 @@ class LoginActivity : BaseMVPActivity<ILoginView, LoginPresenter>(), ILoginView 
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     super.onAnimationEnd(animation)
-                    bt_login.visibility = View.GONE
+                    view.visibility = View.GONE
                 }
             })
         }
     }
 
-    private fun register() {
-        userName = et_name.text.toString().trim()
-        password = et_password.text.toString().trim()
-        rePassword = et_repassword.text.toString().trim()
-        when {
-            TextUtils.isEmpty(userName) -> {
-                toast("userName can not be empty! ")
-                return
-            }
-            TextUtils.isEmpty(password) -> {
-                toast("password can not be empty! ")
-                return
-            }
-            TextUtils.isEmpty(rePassword) -> {
-                toast("rePassword can not be empty! ")
-                return
-            }
-            else -> loginPresenter.register(userName, password, rePassword)
-        }
-    }
-
-    override fun showRegisterResult(bean: BaseBean) {
-        loginPresenter.login(userName, password)
+    override fun onDestroy() {
+        super.onDestroy()
+        btTranslator?.cancel()
+        btAlpha?.cancel()
+        etTranslator?.cancel()
+        etAlpha?.cancel()
     }
 }
