@@ -46,7 +46,8 @@ object Constant {
     const val wan_query = "article/query/" // index/post: 'index' in url, 'k' in body
 
     /**
-     * 首页文章
+     * 首页文章,Banner
      */
     const val wan_home_page = "article/list/" // {index}/json
+    const val wan_banner = "banner/json"
 }

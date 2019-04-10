@@ -13,9 +13,20 @@ import com.bumptech.glide.Glide
  * Desc:
  */
 
-fun Context.loadImage(resId: Int, target: ImageView) {
+fun Context.loadImage(
+    resId: Int, target: ImageView
+) {
     Glide.with(this)
         .load(resId)
+        .into(target)
+}
+
+fun Context.loadImage(
+    url: String,
+    target: ImageView
+) {
+    Glide.with(this)
+        .load(url)
         .into(target)
 }
 

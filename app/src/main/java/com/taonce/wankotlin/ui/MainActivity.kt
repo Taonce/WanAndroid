@@ -1,16 +1,12 @@
 package com.taonce.wankotlin.ui
 
-import android.os.Bundle
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.viewpager.widget.PagerAdapter
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseActivity
+import com.taonce.wankotlin.ui.fragment.HomePageFragment
 import com.taonce.wankotlin.ui.fragment.HotKeyFragment
 import com.taonce.wankotlin.ui.fragment.TreeFragment
 import com.taonce.wankotlin.ui.fragment.WxChapterFragment
@@ -18,12 +14,12 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-    lateinit var fragments: List<Fragment>
+    private lateinit var fragments: List<Fragment>
 
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun initData() {
-        fragments = listOf(HotKeyFragment(), TreeFragment(), WxChapterFragment())
+        fragments = listOf(HotKeyFragment(), HomePageFragment(), TreeFragment(), WxChapterFragment())
     }
 
     override fun initView() {

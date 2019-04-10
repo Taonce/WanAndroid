@@ -89,8 +89,17 @@ interface BaseService {
         @Path(value = "cid") cid: String
     ): Observable<ArticleBean>
 
+    /**
+     * 首页推荐文章
+     */
     @GET(value = Constant.wan_home_page + "{index}/json")
     fun getHomePageArticle(
         @Path("index") index: Int = 0
-    ):BaseObserver<HomePageBean>
+    ):Observable<HomePageBean>
+
+    /**
+     * Banner
+     */
+    @GET(value = Constant.wan_banner)
+    fun getBanner():Observable<BannerBean>
 }
