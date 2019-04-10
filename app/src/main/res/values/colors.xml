@@ -7,5 +7,5 @@
     <color name="transparent">#00000000</color>
     <color name="white">#ffffffff</color>
     <color name="black">#FF000000</color>
-    <color name="PaleTurquoise1">#BBFFFF</color>
+    <color name="pale_turquoise1">#BBFFFF</color>
 </resources>

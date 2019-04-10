@@ -42,7 +42,7 @@ class TreeFragment : BaseFragment(), ITreeView {
         treeBean.data?.let {
             mData.addAll(it)
             treeAdapter = TreeAdapter(this.context!!, R.layout.item_tree, mData)
-            rv_tree.layoutManager = GridLayoutManager(this.context, 2)
+            rv_tree.layoutManager = GridLayoutManager(this.context, 3)
             rv_tree.adapter = treeAdapter
             treeAdapter.notifyDataSetChanged()
         } ?: toast("")

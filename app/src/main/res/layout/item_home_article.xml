@@ -9,7 +9,7 @@
         app:cardElevation="5dp"
         app:contentPadding="5dp"
         app:cardUseCompatPadding="true"
-        app:cardBackgroundColor="@color/PaleTurquoise1">
+        app:cardBackgroundColor="@color/pale_turquoise1">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
