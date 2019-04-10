@@ -19,7 +19,7 @@ class MainActivity : BaseActivity() {
     override fun getLayoutId(): Int = R.layout.activity_main
 
     override fun initData() {
-        fragments = listOf(HotKeyFragment(), HomePageFragment(), TreeFragment(), WxChapterFragment())
+        fragments = listOf(HomePageFragment(), HotKeyFragment(), TreeFragment(), WxChapterFragment())
     }
 
     override fun initView() {

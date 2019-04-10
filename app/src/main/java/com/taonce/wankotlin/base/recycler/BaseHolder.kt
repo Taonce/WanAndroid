@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Desc: [RecyclerView.ViewHolder] 基类
  */
 
-class BaseHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class BaseHolder(private val item: View) : RecyclerView.ViewHolder(item) {
 
     private val mViews = SparseArrayCompat<View>()
 
@@ -23,7 +23,7 @@ class BaseHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun <V : View> getView(id: Int): V {
         var view = mViews[id]
         if (view == null) {
-            view = itemView.findViewById(id)
+            view = item.findViewById(id)
             mViews.put(id, view)
         }
         return view as V

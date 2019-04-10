@@ -29,7 +29,7 @@ class HotKeyFragment : BaseFragment(), IHotKeyView {
 
     override fun initData() {
         mPresenter = HotKeyPresenter(this)
-
+        mPresenter.getHotKey()
     }
 
     override fun initView() {
@@ -37,13 +37,6 @@ class HotKeyFragment : BaseFragment(), IHotKeyView {
     }
 
     override fun initEvent() {
-    }
-
-    override fun onResume() {
-        if (mData.isEmpty()) {
-            mPresenter.getHotKey()
-        }
-        super.onResume()
     }
 
     override fun showHotKey(hotKeyBean: HotKeyBean) {

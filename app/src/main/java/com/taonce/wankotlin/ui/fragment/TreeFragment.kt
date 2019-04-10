@@ -29,20 +29,13 @@ class TreeFragment : BaseFragment(), ITreeView {
 
     override fun initData() {
         treePresenter = TreePresenter(this)
-
+        treePresenter.getTree()
     }
 
     override fun initView() {
     }
 
     override fun initEvent() {
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (mData.isEmpty()) {
-            treePresenter.getTree()
-        }
     }
 
     override fun showTreeSystem(treeBean: TreeBean) {

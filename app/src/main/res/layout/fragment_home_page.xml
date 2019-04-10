@@ -4,25 +4,14 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/viewpager_bg"
-        android:clipChildren="false">
-
-    <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vp_home"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:clipChildren="false"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+        android:background="@drawable/viewpager_bg">
 
     <androidx.recyclerview.widget.RecyclerView
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vp_home"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/rv_home"
             android:layout_width="match_parent"
-            android:layout_height="0dp"/>
+            android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

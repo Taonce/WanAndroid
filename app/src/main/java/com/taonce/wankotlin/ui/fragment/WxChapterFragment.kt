@@ -24,6 +24,7 @@ class WxChapterFragment : BaseFragment(), IChapterView {
 
     override fun initData() {
         mPresenter = ChapterPresenter(this)
+        mPresenter.getChapter()
     }
 
     override fun initView() {
@@ -32,13 +33,6 @@ class WxChapterFragment : BaseFragment(), IChapterView {
 
     override fun initEvent() {
 
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (mData.isEmpty()) {
-            mPresenter.getChapter()
-        }
     }
 
     override fun showWxChapter(chapterBean: ChapterBean) {
