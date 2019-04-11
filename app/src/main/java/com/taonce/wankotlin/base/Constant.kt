@@ -10,6 +10,11 @@ package com.taonce.wankotlin.base
 
 object Constant {
     const val base_url = "https://www.wanandroid.com/"
+    const val BUGLY_ID = "6ecde0d53a"
+
+    // intent tag
+    const val X5_URL = "url"
+    const val CHAPTER_ID = "chapterId"
 
     /**
      * 登录注册

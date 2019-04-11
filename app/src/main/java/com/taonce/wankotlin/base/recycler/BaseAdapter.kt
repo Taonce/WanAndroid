@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.taonce.utilmodule.showDebug
 import com.taonce.utilmodule.showError
 
 
@@ -42,17 +43,25 @@ abstract class BaseAdapter<T>(
     }
 
     override fun onBindViewHolder(holder: BaseHolder, position: Int) {
-        if (getItemViewType(position) == type_header || getItemViewType(position) == type_footer) return
-        convert(holder, position)
         holder.itemView.setOnClickListener {
+            showDebug(msg = "item click $position, mHeadView is ${mHeadView == null} null")
             // 这里一定要实现闭包的invoke()方法
-            mItemClick?.invoke(position)
+            if (mHeadView == null) {
+                mItemClick?.invoke(position)
+                showDebug(msg = "item click $position, mItemClick is ${mItemClick == null} null")
+            } else {
+                mItemClick?.invoke(position - 1)
+                showDebug(msg = "item click $position, mItemClick is ${mItemClick == null} null")
+            }
         }
         holder.itemView.setOnLongClickListener {
             if (mItemLongClick != null) {
-                mItemLongClick!!.invoke(position)
+                if (mHeadView == null) mItemLongClick!!.invoke(position)
+                else mItemLongClick!!.invoke(position - 1)
             } else return@setOnLongClickListener false
         }
+        if (getItemViewType(position) == type_header || getItemViewType(position) == type_footer) return
+        convert(holder, position)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseHolder {

@@ -1,13 +1,16 @@
 package com.taonce.wankotlin.ui.fragment
 
+import android.content.Intent
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseFragment
+import com.taonce.wankotlin.base.Constant
 import com.taonce.wankotlin.bean.ChapterBean
 import com.taonce.wankotlin.contract.IChapterView
 import com.taonce.wankotlin.presenter.ChapterPresenter
+import com.taonce.wankotlin.ui.ChapterArticleActivity
 import com.taonce.wankotlin.ui.adapter.ChapterAdapter
 import kotlinx.android.synthetic.main.fragment_chapter.*
 
@@ -44,6 +47,11 @@ class WxChapterFragment : BaseFragment(), IChapterView {
         chapterBean.data?.let {
             mData.addAll(0, it)
             mAdapter = ChapterAdapter(this.context!!, R.layout.item_chapter, mData)
+            mAdapter?.setOnItemClickListener { position ->
+                val intent = Intent(this.context!!, ChapterArticleActivity::class.java)
+                intent.putExtra(Constant.CHAPTER_ID, mData[position].id)
+                startActivity(intent)
+            }
             rv_chapter.adapter = mAdapter
             rv_chapter.layoutManager = LinearLayoutManager(this.context!!)
             mAdapter?.notifyDataSetChanged()

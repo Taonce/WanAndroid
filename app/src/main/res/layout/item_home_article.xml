@@ -9,7 +9,7 @@
         app:cardElevation="5dp"
         app:contentPadding="5dp"
         app:cardUseCompatPadding="true"
-        app:cardBackgroundColor="@color/pale_turquoise1">
+        android:background="#f4f9fa">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -32,12 +32,14 @@
                 android:id="@+id/tv_item_home_time"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_item_home_title"
+                android:layout_marginTop="5dp"
                 android:textSize="14sp"/>
 
         <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                   android:id="@+id/tv_item_home_tag"
                   app:layout_constraintLeft_toLeftOf="parent"
                   app:layout_constraintTop_toBottomOf="@id/tv_item_home_time"
+                  android:layout_marginTop="5dp"
                   android:textSize="14sp"/>
 
         <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"

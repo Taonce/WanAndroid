@@ -7,7 +7,7 @@ import com.taonce.wankotlin.contract.IHomePageModel
 import com.taonce.wankotlin.contract.IHomePageView
 import com.taonce.wankotlin.model.HomePageModel
 
-class HomePagePrensenter(private val mView: IHomePageView) : BasePresenter<IHomePageView>(),
+class HomePagePresenter(private val mView: IHomePageView) : BasePresenter<IHomePageView>(),
     IHomePageModel.OnGetBannerListener,
     IHomePageModel.OnGetHomePageListener {
 
@@ -18,6 +18,7 @@ class HomePagePrensenter(private val mView: IHomePageView) : BasePresenter<IHome
     fun getBanner() = model.getBanner(this)
 
     override fun onListener(homePageBean: HomePageBean?) {
+        mView.hideLoadingView()
         homePageBean?.let { mView.showHomePageData(it) }
     }
 

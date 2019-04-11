@@ -26,6 +26,10 @@
                   android:windowSoftInputMode="adjustResize">
 
         </activity>
+        <activity android:name=".ui.CommonX5Activity">
+
+        </activity>
+        <activity android:name=".ui.ChapterArticleActivity"/>
     </application>
 
 </manifest>

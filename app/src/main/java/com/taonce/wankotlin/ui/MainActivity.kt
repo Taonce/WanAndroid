@@ -25,7 +25,8 @@ class MainActivity : BaseActivity() {
     override fun initView() {
         vp_main.adapter = MyAdapter(supportFragmentManager)
         vp_main.pageMargin = 16
-//        vp_main.offscreenPageLimit = 2
+        vp_main.currentItem = 0
+        vp_main.offscreenPageLimit = 3
     }
 
     override fun initEvent() {

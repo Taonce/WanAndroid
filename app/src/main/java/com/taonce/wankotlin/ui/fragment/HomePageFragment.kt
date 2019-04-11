@@ -1,6 +1,7 @@
 package com.taonce.wankotlin.ui.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +9,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.taonce.utilmodule.showDebug
+import com.taonce.utilmodule.showInfo
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseFragment
+import com.taonce.wankotlin.base.Constant
 import com.taonce.wankotlin.bean.BannerBean
 import com.taonce.wankotlin.bean.HomePageBean
 import com.taonce.wankotlin.contract.IHomePageView
-import com.taonce.wankotlin.presenter.HomePagePrensenter
+import com.taonce.wankotlin.presenter.HomePagePresenter
+import com.taonce.wankotlin.ui.CommonX5Activity
 import com.taonce.wankotlin.ui.adapter.HomePageAdapter
+import com.taonce.wankotlin.ui.toCommonX5Activity
 import com.taonce.wankotlin.util.loadImage
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
@@ -24,12 +29,13 @@ import kotlinx.android.synthetic.main.fragment_home_page.*
 
 class HomePageFragment : BaseFragment(), IHomePageView {
     // banner url
-    private var mUrl: MutableList<String> = mutableListOf()
+    private var mBannerImageUrl: MutableList<String> = mutableListOf()
+    private var mBannerUrl: MutableList<String> = mutableListOf()
 
     // article data
-    private var mData: MutableList<HomePageBean.Data.DatasItem> = mutableListOf()
+    private var mArticleData: MutableList<HomePageBean.Data.DatasItem> = mutableListOf()
     private var mAdapter: HomePageAdapter? = null
-    private lateinit var mPresenter: HomePagePrensenter
+    private lateinit var mPresenter: HomePagePresenter
 
     // add rv head layout
     private var mRootView: ViewGroup? = null
@@ -57,18 +63,40 @@ class HomePageFragment : BaseFragment(), IHomePageView {
     }
 
     override fun initData() {
-        mPresenter = HomePagePrensenter(this)
+        mPresenter = HomePagePresenter(this)
         mPresenter.getHomePageData(0)
         mPresenter.getBanner()
+        showLoading()
     }
 
     override fun initEvent() {
+        banner?.setOnBannerListener {
+            val urlFrom: String = mBannerUrl[it]
+            if (!urlFrom.isEmpty()) {
+                toCommonX5Activity(this.context!!, urlFrom)
+            } else {
+                showInfo(msg = "banner url is empty! ")
+            }
+        }
+    }
+
+    override fun hideLoadingView() {
+        hideLoading()
     }
 
     override fun showHomePageData(homePageBean: HomePageBean) {
         homePageBean.data.datas?.let {
-            mData.addAll(0, it)
-            mAdapter = HomePageAdapter(this.context!!, R.layout.item_home_article, mData, mHeadView!!)
+            mArticleData.addAll(0, it)
+            mAdapter = HomePageAdapter(this.context!!, R.layout.item_home_article, mArticleData, mHeadView!!)
+            mAdapter?.setOnItemClickListener { index ->
+                showDebug(msg = "item click enter, position is $index")
+                val articleUrl: String = mArticleData[index].link
+                if (!articleUrl.isEmpty()) {
+                    toCommonX5Activity(this.context!!, articleUrl)
+                } else {
+                    showInfo(msg = "article url is empty! ")
+                }
+            }
             rv_home.adapter = mAdapter
             rv_home.layoutManager = LinearLayoutManager(this.context!!)
             mAdapter?.notifyDataSetChanged()
@@ -78,12 +106,13 @@ class HomePageFragment : BaseFragment(), IHomePageView {
     override fun showBanner(bannerBean: BannerBean) {
         bannerBean.data.let {
             it.forEach { url ->
-                mUrl.add(url.imagePath)
+                mBannerImageUrl.add(url.imagePath)
+                mBannerUrl.add(url.url)
             }
         }
         banner?.apply {
-            showDebug(msg = "show banner and urls is $mUrl")
-            setImages(mUrl)
+            showDebug(msg = "show banner and urls is $mBannerImageUrl")
+            setImages(mBannerImageUrl)
             setImageLoader(GlideImageLoader())
             start()
         }

@@ -4,7 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.widget.Toast
 import com.taonce.utilmodule.toast
+import com.taonce.wankotlin.base.Constant
 import com.tencent.bugly.crashreport.CrashReport
+import com.tencent.smtt.sdk.QbSdk
 import kotlin.math.min
 
 
@@ -25,9 +27,20 @@ class App : Application() {
     override fun onCreate() {
         mInstance = this
         super.onCreate()
-        CrashReport.initCrashReport(this@App,"6ecde0d53a",false)
+        CrashReport.initCrashReport(this@App, Constant.BUGLY_ID, false)
+        initX5()
     }
 
+    private fun initX5() {
+        val callBack: QbSdk.PreInitCallback = object : QbSdk.PreInitCallback {
+            override fun onCoreInitFinished() {
+            }
+
+            override fun onViewInitFinished(p0: Boolean) {
+            }
+        }
+        QbSdk.initX5Environment(mInstance, callBack)
+    }
 }
 
 

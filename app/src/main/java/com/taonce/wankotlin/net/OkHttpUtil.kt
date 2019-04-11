@@ -2,6 +2,7 @@ package com.taonce.wankotlin.net
 
 import android.util.Log
 import com.parkingwang.okhttp3.LogInterceptor.LogInterceptor
+import com.taonce.utilmodule.showInfo
 import com.taonce.wankotlin.App
 import okhttp3.Cache
 import okhttp3.Interceptor
@@ -64,7 +65,7 @@ class OkHttpUtil private constructor() {
     // 自定义OkHttpLog
     class OkHttpLog : LogInterceptor.Logger {
         override fun log(message: String?) {
-            Log.d("okhttp", message)
+            showInfo(tag = "okhttp", msg = " $message")
         }
     }
 

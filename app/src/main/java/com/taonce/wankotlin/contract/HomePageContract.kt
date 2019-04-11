@@ -6,6 +6,7 @@ import com.taonce.wankotlin.bean.HomePageBean
 interface IHomePageView {
     fun showHomePageData(homePageBean: HomePageBean)
     fun showBanner(bannerBean: BannerBean)
+    fun hideLoadingView()
 }
 
 interface IHomePageModel {

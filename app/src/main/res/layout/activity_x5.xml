@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    <include
+            android:id="@+id/include_x5"
+            layout="@layout/item_common_head"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ProgressBar
+            android:id="@+id/pb_x5"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="?android:progressBarStyleHorizontal"
+            android:max="100"
+            android:visibility="gone"
+            android:indeterminateOnly="false"
+            app:layout_constraintTop_toBottomOf="@id/include_x5"
+            app:layout_constraintBottom_toTopOf="@id/x5_common"/>
+
+    <com.taonce.wankotlin.ui.custome.X5WebView
+            android:id="@+id/x5_common"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/pb_x5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:overScrollMode="never"
+            android:scrollbars="horizontal"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
