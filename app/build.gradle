@@ -68,4 +68,6 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0-rc01'
     // banner
     implementation 'com.youth.banner:banner:1.4.10'
+    // flow layout
+    implementation 'com.hyman:flowlayout-lib:1.1.2'
 }

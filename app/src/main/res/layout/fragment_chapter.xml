@@ -8,7 +8,7 @@
 
     <TextView
             android:id="@+id/tv_chapter"
-            android:text="@string/chapter"
+            android:text="@string/big_cow"
             android:textColor="@color/black"
             android:textSize="36sp"
             app:layout_constraintLeft_toLeftOf="parent"

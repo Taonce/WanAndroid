@@ -6,7 +6,7 @@
         android:layout_height="wrap_content">
 
     <TextView
-            android:padding="5dp"
+            android:padding="10dp"
             android:id="@+id/tv_item_chapter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -93,7 +93,6 @@ class LoginActivity : BaseMVPActivity<ILoginView, LoginPresenter>(), ILoginView 
 
     override fun showRegisterResult(bean: LoginBean) {
         // bt_login enter
-        val x: Float = et_repassword.x
         bt_login.visibility = View.VISIBLE
         btTranslator = ObjectAnimator.ofFloat(bt_login, "x", getDeviceWidth().toFloat(), marginX)
         btAlpha = ObjectAnimator.ofFloat(bt_login, "alpha", 0.1f, 1f)

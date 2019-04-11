@@ -50,6 +50,7 @@ class WxChapterFragment : BaseFragment(), IChapterView {
             mAdapter?.setOnItemClickListener { position ->
                 val intent = Intent(this.context!!, ChapterArticleActivity::class.java)
                 intent.putExtra(Constant.CHAPTER_ID, mData[position].id)
+                intent.putExtra(Constant.CHAPTER_NAME, mData[position].name)
                 startActivity(intent)
             }
             rv_chapter.adapter = mAdapter

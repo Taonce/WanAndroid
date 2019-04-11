@@ -28,6 +28,6 @@ class ChapterArticleAdapter(
         holder.getView<TextView>(R.id.tv_item_chapter_article_title).text = mData[position].title
         holder.getView<TextView>(R.id.tv_item_chapter_article_time).text = mData[position].niceDate
         holder.getView<TextView>(R.id.tv_item_chapter_article_author).text =
-            "${mData[position].superChapterName}: ${mData[position].tags?.get(0)?.name}"
+            "${mData[position].superChapterName}: ${mData[position].chapterName}"
+            }
     }
-}

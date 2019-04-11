@@ -8,8 +8,8 @@ import com.taonce.wankotlin.base.recycler.BaseHolder
 import com.taonce.wankotlin.bean.ChapterBean
 
 class ChapterAdapter(
-    private val mContext: Context,
-    private val layoutId: Int,
+    mContext: Context,
+    layoutId: Int,
     private val mData: MutableList<ChapterBean.DataItem>
 ) : BaseAdapter<ChapterBean.DataItem>(mContext, layoutId, mData) {
 

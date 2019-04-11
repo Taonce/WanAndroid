@@ -15,6 +15,7 @@ object Constant {
     // intent tag
     const val X5_URL = "url"
     const val CHAPTER_ID = "chapterId"
+    const val CHAPTER_NAME = "chapterName"
 
     /**
      * 登录注册
