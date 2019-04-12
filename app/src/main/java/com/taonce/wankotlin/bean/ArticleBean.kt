@@ -2,7 +2,7 @@ package com.taonce.wankotlin.bean
 
 import com.taonce.wankotlin.base.BaseBean
 
-data class ArticleBean(
+data class  ArticleBean(
     val data: Data
 ):BaseBean() {
     data class Data(

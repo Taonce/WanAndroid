@@ -1,6 +1,7 @@
 package com.taonce.wankotlin.contract
 
 import com.taonce.wankotlin.bean.WxHistoryBean
+import com.taonce.wankotlin.base.IBaseView
 
 
 /**
@@ -9,7 +10,7 @@ import com.taonce.wankotlin.bean.WxHistoryBean
  * Project: WanKotlin
  * Desc:
  */
-interface IChapterArticleView {
+interface IChapterArticleView : IBaseView {
     fun showWxHistory(wxHistoryBean: WxHistoryBean)
 }
 

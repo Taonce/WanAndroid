@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.taonce.wankotlin.R
-import com.taonce.wankotlin.ui.inter.IBaseView
 
 
 /**

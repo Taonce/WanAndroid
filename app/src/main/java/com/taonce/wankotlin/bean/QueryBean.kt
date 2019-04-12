@@ -6,8 +6,13 @@ data class QueryBean(
     val data: Data
 ) : BaseBean() {
     data class Data(
+        val over: Boolean = false,
+        val pageCount: Int = 0,
+        val total: Int = 0,
         val curPage: Int = 0,
-        val datas: List<DatasItem>?
+        val offset: Int = 0,
+        val size: Int = 0,
+        val datas: MutableList<DatasItem>?
     ) {
         data class DatasItem(
             val superChapterName: String = "",

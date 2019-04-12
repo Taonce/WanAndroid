@@ -39,6 +39,7 @@
                android:paddingStart="20dp"
                android:paddingEnd="20dp"
                android:scaleType="fitCenter"
+               android:visibility="invisible"
                android:src="@mipmap/more"
                app:layout_constraintEnd_toEndOf="parent"
                app:layout_constraintBottom_toBottomOf="parent"

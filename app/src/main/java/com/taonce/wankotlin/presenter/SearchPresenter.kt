@@ -12,10 +12,12 @@ class SearchPresenter(private val mView: ISearchView) : BasePresenter<ISearchVie
     private val model: ISearchModel = SearchModel()
 
     fun getSearch(index: Int, key: String) {
-        model.getSearch(
-            index, key, this
-        )
-        mView.showLoading()
+        if (key.isNotEmpty()) {
+            model.getSearch(
+                index, key, this
+            )
+            mView.showLoading()
+        }
     }
 
     override fun onListener(queryBean: QueryBean?) {

@@ -6,50 +6,49 @@
 
     <TextView
             android:id="@+id/tv_item_chapter_article_title"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:gravity="center_vertical"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_marginStart="10dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_item_chapter_article"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
               android:id="@+id/tv_item_chapter_article_time"
-              android:textSize="14sp"
+              android:textSize="12sp"
               android:textAllCaps="false"
               android:gravity="center_vertical"
-              app:layout_constraintStart_toStartOf="parent"
-              android:layout_marginTop="5dp"
+              app:layout_constraintStart_toEndOf="@id/iv_item_chapter_article"
               android:layout_marginStart="10dp"
               app:layout_constraintTop_toBottomOf="@id/tv_item_chapter_article_title"/>
 
     <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
               android:id="@+id/tv_item_chapter_article_author"
-              android:textSize="14sp"
+              android:textSize="12sp"
               android:textAllCaps="false"
               android:gravity="center_vertical"
-              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintStart_toEndOf="@id/iv_item_chapter_article"
               app:layout_constraintTop_toBottomOf="@id/tv_item_chapter_article_time"
-              android:layout_marginStart="10dp"
-              android:layout_marginTop="5dp"/>
+              android:layout_marginStart="10dp"/>
 
-    <View android:layout_width="match_parent" android:layout_height="1dp"
+    <View android:layout_width="match_parent" android:layout_height=".5dp"
           android:background="@color/pale_turquoise1"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toBottomOf="@id/tv_item_chapter_article_author"
-          android:layout_marginTop="5dp"
+          android:layout_marginTop="15sp"
           app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
                android:id="@+id/iv_item_chapter_article"
                android:src="@mipmap/chapter"
-               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintStart_toStartOf="parent"
                app:layout_constraintBottom_toBottomOf="parent"
-               android:contentDescription="@null"
-               android:layout_marginEnd="20dp"
-               android:layout_marginBottom="20dp"/>
+               app:layout_constraintTop_toTopOf="parent"
+               android:layout_marginStart="10dp"
+               android:contentDescription="@null"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

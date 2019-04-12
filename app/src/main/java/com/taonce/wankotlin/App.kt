@@ -7,6 +7,7 @@ import com.taonce.utilmodule.toast
 import com.taonce.wankotlin.base.Constant
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.smtt.sdk.QbSdk
+import org.litepal.LitePal
 import kotlin.math.min
 
 
@@ -27,7 +28,11 @@ class App : Application() {
     override fun onCreate() {
         mInstance = this
         super.onCreate()
+        // litePal init
+        LitePal.initialize(this@App)
+        // bugly init
         CrashReport.initCrashReport(this@App, Constant.BUGLY_ID, false)
+        // X5 web init
         initX5()
     }
 
@@ -39,7 +44,7 @@ class App : Application() {
             override fun onViewInitFinished(p0: Boolean) {
             }
         }
-        QbSdk.initX5Environment(mInstance, callBack)
+        QbSdk.initX5Environment(this@App, callBack)
     }
 }
 

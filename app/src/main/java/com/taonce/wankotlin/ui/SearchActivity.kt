@@ -2,43 +2,35 @@ package com.taonce.wankotlin.ui
 
 import android.content.Context
 import android.view.View
-import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import androidx.core.view.marginStart
-import com.taonce.utilmodule.showInfo
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.taonce.utilmodule.start
 import com.taonce.wankotlin.R
-import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.base.BaseMVPActivity
+import com.taonce.wankotlin.base.Constant
 import com.taonce.wankotlin.bean.HotKeyBean
-import com.taonce.wankotlin.bean.QueryBean
+import com.taonce.wankotlin.bean.HotKeyDB
 import com.taonce.wankotlin.contract.IHotKeyView
-import com.taonce.wankotlin.contract.ISearchView
-import com.taonce.wankotlin.net.BaseObserver
-import com.taonce.wankotlin.net.RetrofitUtil
-import com.taonce.wankotlin.net.RxSchedulers
 import com.taonce.wankotlin.presenter.HotKeyPresenter
-import com.taonce.wankotlin.presenter.SearchPresenter
+import com.taonce.wankotlin.ui.adapter.HotKeyDBAdapter
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
-import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity :
     BaseMVPActivity<IHotKeyView, HotKeyPresenter>(),
-    IHotKeyView,
-    ISearchView {
+    IHotKeyView {
 
     private var mHotKeys: MutableList<String> = mutableListOf()
     private val mPresenter: HotKeyPresenter by lazy { getPresenter() }
-    private lateinit var mSearchPresenter: SearchPresenter
+    private var mDBAdapter: HotKeyDBAdapter? = null
 
     override fun getLayoutId(): Int = R.layout.activity_search
 
     override fun initData() {
-        mSearchPresenter = SearchPresenter(this)
         mPresenter.getHotKey()
+        mPresenter.findKeyAll()
     }
 
     override fun initView() {
@@ -50,9 +42,8 @@ class SearchActivity :
         et_search.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == 0) {
                 val content: String = et_search.text.toString().trim()
-                if (content.isNotEmpty()) {
-                    mSearchPresenter.getSearch(0, content)
-                }
+                mPresenter.saveKey2DB(key = content)
+                intentSearchResultActivity(content)
                 //隐藏软键盘
                 val imm: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
                 imm.hideSoftInputFromWindow(window.decorView.windowToken, 0)
@@ -70,7 +61,20 @@ class SearchActivity :
         settingFlowLayout()
     }
 
-    override fun showSearchData(queryBean: QueryBean) {
+    override fun showDB(hotKeyDBList: MutableList<HotKeyDB>) {
+        mDBAdapter = HotKeyDBAdapter(
+            this@SearchActivity,
+            R.layout.item_hot_key_db,
+            hotKeyDBList
+        )
+        rv_key_db.adapter = mDBAdapter
+        rv_key_db.layoutManager = LinearLayoutManager(this@SearchActivity)
+        mDBAdapter?.notifyDataSetChanged()
+        mDBAdapter?.setOnItemClickListener { position ->
+            val key: String = hotKeyDBList[position].key
+            mPresenter.saveKey2DB(key)
+            intentSearchResultActivity(key)
+        }
     }
 
     private fun settingFlowLayout() {
@@ -79,17 +83,21 @@ class SearchActivity :
                 val tv = TextView(this@SearchActivity)
                 tv.apply {
                     text = t
-                    textSize = 16f
-                    setPadding(5, 5, 5, 5)
+                    textSize = 14f
+                    setBackgroundResource(R.drawable.flow_layout_bg)
                 }
                 return tv
             }
         }
         fl_search.setOnTagClickListener { _, position, _ ->
-            if (mHotKeys[position].isNotEmpty()) {
-                mSearchPresenter.getSearch(0, mHotKeys[position])
-            }
+            val key: String = mHotKeys[position]
+            mPresenter.saveKey2DB(key)
+            intentSearchResultActivity(key)
             return@setOnTagClickListener true
         }
+    }
+
+    private fun intentSearchResultActivity(key: String) {
+        start(SearchResultActivity::class.java, mapOf(Pair(Constant.SEARCH_KEY, key)))
     }
 }

@@ -1,7 +1,7 @@
 package com.taonce.wankotlin.contract
 
 import com.taonce.wankotlin.bean.LoginBean
-import com.taonce.wankotlin.ui.inter.IBaseView
+import com.taonce.wankotlin.base.IBaseView
 
 
 /**

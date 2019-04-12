@@ -16,6 +16,7 @@ object Constant {
     const val X5_URL = "url"
     const val CHAPTER_ID = "chapterId"
     const val CHAPTER_NAME = "chapterName"
+    const val SEARCH_KEY = "searchKey"
 
     /**
      * 登录注册

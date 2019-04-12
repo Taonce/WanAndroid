@@ -3,7 +3,6 @@ package com.taonce.wankotlin.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.taonce.wankotlin.R
-import com.taonce.wankotlin.ui.inter.IBaseView
 
 
 /**

@@ -28,7 +28,7 @@ class HomePageAdapter(
 ) : BaseAdapter<HomePageBean.Data.DatasItem>(mContext, resId, mData, mHeadView) {
     override fun convert(holder: BaseHolder, position: Int) {
         // headView exist, position should -1
-        val itemData: HomePageBean.Data.DatasItem = mData[position - 1]
+        val itemData: HomePageBean.Data.DatasItem = mData[position]
         val title: TextView = holder.getView(R.id.tv_item_home_title)
         val time: TextView = holder.getView(R.id.tv_item_home_time)
         val tag: TextView = holder.getView(R.id.tv_item_home_tag)

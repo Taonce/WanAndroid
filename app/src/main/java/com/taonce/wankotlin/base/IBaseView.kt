@@ -1,4 +1,4 @@
-package com.taonce.wankotlin.ui.inter
+package com.taonce.wankotlin.base
 
 
 /**
