@@ -1,5 +1,7 @@
 package com.taonce.wankotlin.presenter
 
+import com.taonce.utilmodule.toast
+import com.taonce.wankotlin.App
 import com.taonce.wankotlin.base.BasePresenter
 import com.taonce.wankotlin.bean.QueryBean
 import com.taonce.wankotlin.contract.ISearchModel
@@ -22,6 +24,13 @@ class SearchPresenter(private val mView: ISearchView) : BasePresenter<ISearchVie
 
     override fun onListener(queryBean: QueryBean?) {
         mView.hideLoading()
-        queryBean?.let { mView.showSearchData(it) }
+        mView.refreshFinished()
+        queryBean?.data?.datas?.let {
+            if (it.isNotEmpty()) {
+                mView.showSearchData(it)
+            }else{
+                App.mInstance.toast("No More! ")
+            }
+        }
     }
 }

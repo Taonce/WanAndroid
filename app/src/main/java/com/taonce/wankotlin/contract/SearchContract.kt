@@ -4,7 +4,9 @@ import com.taonce.wankotlin.bean.QueryBean
 import com.taonce.wankotlin.base.IBaseView
 
 interface ISearchView : IBaseView {
-    fun showSearchData(queryBean: QueryBean)
+    fun showSearchData(queryBean: MutableList<QueryBean.Data.DatasItem>)
+
+    fun refreshFinished()
 }
 
 interface ISearchModel {

@@ -11,7 +11,9 @@ import com.taonce.wankotlin.base.IBaseView
  * Desc:
  */
 interface IChapterArticleView : IBaseView {
-    fun showWxHistory(wxHistoryBean: WxHistoryBean)
+    fun showWxHistory(wxHistoryBean: MutableList<WxHistoryBean.Data.DatasItem>)
+
+    fun refreshFinished()
 }
 
 interface IChapterArticleModel {

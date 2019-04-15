@@ -12,8 +12,9 @@
     <string name="connect_timeout">连接超时</string>
     <string name="request_timeout">请求超时</string>
     <string name="parse_error">解析错误</string>
-    <string name="article">Article</string>
+    <string name="no_more">No More! </string>
 
+    <string name="article">Article</string>
     <string name="tree">知识体系</string>
     <string name="chapter">Chapters</string>
     <string name="big_cow">Android大牛汇聚地</string>

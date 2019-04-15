@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.taonce.utilmodule.showDebug
+import com.taonce.utilmodule.start
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseActivity
 import com.taonce.wankotlin.ui.fragment.HomePageFragment
@@ -32,7 +33,8 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        et_search.setOnClickListener { startActivity(Intent(this, SearchActivity::class.java)) }
+        et_search.setOnClickListener { start(SearchActivity::class.java) }
+        fa_main.setOnClickListener { }
     }
 
     inner class MyAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {

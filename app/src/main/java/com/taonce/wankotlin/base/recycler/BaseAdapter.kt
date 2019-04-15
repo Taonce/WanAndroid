@@ -118,6 +118,17 @@ abstract class BaseAdapter<T>(
     }
 
     /**
+     * 添加数据，指定位置刷新
+     */
+    fun addListData(listData: MutableList<T>, isDelete: Boolean = false, refreshIndex: Int = 0) {
+        if (isDelete) {
+            mData?.clear()
+        }
+        mData?.addAll(listData)
+        notifyItemChanged(refreshIndex)
+    }
+
+    /**
      * 删除指定项数据
      * [position]:从0开始
      */

@@ -10,7 +10,7 @@ data class WxHistoryBean(val data: Data) : BaseBean() {
         val curPage: Int = 0,
         val offset: Int = 0,
         val size: Int = 0,
-        val datas: List<DatasItem>?
+        val datas: MutableList<DatasItem>?
     ) {
         data class DatasItem(
             val superChapterName: String = "",

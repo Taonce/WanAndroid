@@ -55,4 +55,16 @@
             android:clipChildren="false"
             android:overScrollMode="never"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fa_main"
+            android:layout_margin="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            android:backgroundTint="@color/floatButton"
+            app:elevation="5dp"
+            android:src="@mipmap/setting"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

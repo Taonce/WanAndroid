@@ -11,14 +11,19 @@
              app:layout_constraintTop_toTopOf="parent"
              app:layout_constraintLeft_toLeftOf="parent"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_search_result"
-            android:overScrollMode="never"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/srl_search_result"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/include_search_result"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_height="0dp"/>
+            app:layout_constraintBottom_toBottomOf="parent">
 
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_search_result"
+                android:overScrollMode="never"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

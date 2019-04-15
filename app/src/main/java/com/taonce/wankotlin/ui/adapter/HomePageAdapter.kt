@@ -1,16 +1,14 @@
 package com.taonce.wankotlin.ui.adapter
 
 import android.content.Context
-import android.service.quicksettings.Tile
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.taonce.utilmodule.formatDate2Day
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.recycler.BaseAdapter
 import com.taonce.wankotlin.base.recycler.BaseHolder
 import com.taonce.wankotlin.bean.HomePageBean
-import com.youth.banner.Banner
-import kotlinx.android.synthetic.main.item_home_article.view.*
 
 
 /**
@@ -34,8 +32,9 @@ class HomePageAdapter(
         val tag: TextView = holder.getView(R.id.tv_item_home_tag)
         val ivNew: ImageView = holder.getView(R.id.iv_item_home_new)
         title.text = itemData.title
+        title.setTextColor(mContext.resources.getColor(R.color.black))
         // over one day, image gone
-        ivNew.visibility = if (System.currentTimeMillis() - itemData.publishTime <= 24 * 60 * 60 * 100000) {
+        ivNew.visibility = if (System.currentTimeMillis().formatDate2Day() == (itemData.publishTime).formatDate2Day()) {
             View.VISIBLE
         } else {
             View.GONE
