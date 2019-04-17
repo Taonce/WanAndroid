@@ -20,4 +20,11 @@
     <string name="big_cow">Android大牛汇聚地</string>
     <string name="hot_key">HotKey</string>
     <string name="all_people_search">大家都在搜</string>
+    <string name="collection">我的收藏</string>
+    <string name="about">关于我们</string>
+    <string name="quit">退出登录</string>
+    <string name="clickLogin">点击登录</string>
+    <string name="pleaseLogin">请先登录! </string>
+    <string name="logoutSuccess">Logout Success! </string>
+    <string name="version">当前版本:</string>
 </resources>

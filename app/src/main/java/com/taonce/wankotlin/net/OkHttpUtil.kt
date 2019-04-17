@@ -1,13 +1,9 @@
 package com.taonce.wankotlin.net
 
-import android.util.Log
 import com.parkingwang.okhttp3.LogInterceptor.LogInterceptor
 import com.taonce.utilmodule.showInfo
 import com.taonce.wankotlin.App
-import okhttp3.Cache
-import okhttp3.Interceptor
-import okhttp3.OkHttpClient
-import okhttp3.Response
+import okhttp3.*
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -50,8 +46,18 @@ class OkHttpUtil private constructor() {
 
     // 配置OkHttp
     fun getHttpClient(): OkHttpClient {
+        val hashMap: HashMap<String, MutableList<Cookie>> = HashMap()
         if (null == okHttpClient) {
             okHttpClient = OkHttpClient.Builder()
+                .cookieJar(object : CookieJar {
+                    override fun saveFromResponse(url: HttpUrl, cookies: MutableList<Cookie>) {
+                        hashMap[url.host()] = cookies
+                    }
+
+                    override fun loadForRequest(url: HttpUrl): MutableList<Cookie> {
+                        return hashMap[url.host()] ?: mutableListOf()
+                    }
+                })
                 .connectTimeout(connectionTime, TimeUnit.SECONDS)
                 .readTimeout(readTime, TimeUnit.SECONDS)
                 .writeTimeout(writeTime, TimeUnit.SECONDS)

@@ -57,7 +57,7 @@ interface BaseService {
      * 退出登录
      */
     @GET(value = Constant.wan_logout)
-    fun logout(): Observable<BaseBean>
+    fun logout(): Observable<LoginBean>
 
     /**
      * 获取公众号列表
@@ -95,11 +95,16 @@ interface BaseService {
     @GET(value = Constant.wan_home_page + "{index}/json")
     fun getHomePageArticle(
         @Path("index") index: Int = 0
-    ):Observable<HomePageBean>
+    ): Observable<HomePageBean>
 
     /**
      * Banner
      */
     @GET(value = Constant.wan_banner)
-    fun getBanner():Observable<BannerBean>
+    fun getBanner(): Observable<BannerBean>
+
+    @GET(value = Constant.wan_collect + "{index}/json")
+    fun getCollectionList(
+        @Path(value = "index") index: Int = 0
+    ): Observable<BaseBean>
 }

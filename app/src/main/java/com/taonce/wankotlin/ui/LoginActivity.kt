@@ -7,9 +7,7 @@ import android.animation.ObjectAnimator
 import android.text.TextUtils
 import android.view.View
 import androidx.core.view.marginStart
-import com.taonce.utilmodule.getDeviceWidth
-import com.taonce.utilmodule.showInfo
-import com.taonce.utilmodule.toast
+import com.taonce.utilmodule.*
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.base.BaseMVPActivity
@@ -69,7 +67,8 @@ class LoginActivity : BaseMVPActivity<ILoginView, LoginPresenter>(), ILoginView 
     override fun getPresenter(): LoginPresenter = LoginPresenter(this)
 
     override fun showLoginResult(bean: LoginBean) {
-        toast("login success! ")
+        putSP("userName", bean.data.username)
+        finish()
     }
 
     private fun translate() {
