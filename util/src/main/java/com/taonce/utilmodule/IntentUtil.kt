@@ -18,11 +18,13 @@ import java.io.Serializable
 /**
  * [clazz]: destination [Activity]
  * [map]: put data
+ * [requestCode]: request Code
  * [isFinished]: [Activity] is finish or is not finish
  */
 fun <T : Activity> Activity.start(
     clazz: Class<T>,
     map: Map<String, Any>? = null,
+    requestCode: Int? = null,
     isFinished: Boolean = false
 ) {
     val intent = Intent(this, clazz)
@@ -56,7 +58,8 @@ fun <T : Activity> Activity.start(
             }
         }
     }
-    this.startActivity(intent)
+    requestCode?.let { this.startActivityForResult(intent, it) }
+    requestCode ?: this.startActivity(intent)
     if (isFinished) this.finish()
 }
 

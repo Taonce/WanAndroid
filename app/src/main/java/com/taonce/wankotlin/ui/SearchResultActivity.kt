@@ -29,7 +29,6 @@ class SearchResultActivity : BaseMVPActivity<ISearchView, SearchPresenter>(),
     private lateinit var mKey: String
     private var index: Int = 0
     private val mQueryResultData: MutableList<QueryBean.Data.DatasItem> = mutableListOf()
-    private var updateIndex: Int = 0
 
     override fun getLayoutId(): Int = R.layout.activity_search_result
 
@@ -64,9 +63,7 @@ class SearchResultActivity : BaseMVPActivity<ISearchView, SearchPresenter>(),
 
     override fun showSearchData(queryBean: MutableList<QueryBean.Data.DatasItem>) {
         index++
-        updateIndex = if (mQueryResultData.isEmpty()) 0 else mQueryResultData.size - 1
-        mQueryResultData.addAll(queryBean)
-        mAdapter?.addListData(queryBean, refreshIndex = updateIndex)
+        mAdapter?.addListData(queryBean)
 
     }
 

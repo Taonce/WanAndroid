@@ -1,5 +1,7 @@
 package com.taonce.wankotlin.base
 
+import okhttp3.Cookie
+
 
 /**
  * Author: taoyongxiang
@@ -9,14 +11,23 @@ package com.taonce.wankotlin.base
  */
 
 object Constant {
-    const val base_url = "https://www.wanandroid.com/"
+    const val BASE_URL = "https://www.wanandroid.com/"
     const val BUGLY_ID = "6ecde0d53a"
+    const val SET_COOKIE = "set-cookie"
+    const val COOKIE = "Cookie"
+
+    // sp tag
+    const val SP_COOKIE = "cookie"
+    const val SP_USERNAME = "userName"
 
     // intent tag
     const val X5_URL = "url"
     const val CHAPTER_ID = "chapterId"
     const val CHAPTER_NAME = "chapterName"
     const val SEARCH_KEY = "searchKey"
+
+    // request code
+    const val SETTING2LOGIN = 0x01
 
     /**
      * 登录注册

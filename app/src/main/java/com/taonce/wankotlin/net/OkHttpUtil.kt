@@ -1,8 +1,10 @@
 package com.taonce.wankotlin.net
 
 import com.parkingwang.okhttp3.LogInterceptor.LogInterceptor
+import com.taonce.utilmodule.getSP
 import com.taonce.utilmodule.showInfo
 import com.taonce.wankotlin.App
+import com.taonce.wankotlin.base.Constant
 import okhttp3.*
 import java.io.File
 import java.util.concurrent.TimeUnit
@@ -62,6 +64,8 @@ class OkHttpUtil private constructor() {
                 .readTimeout(readTime, TimeUnit.SECONDS)
                 .writeTimeout(writeTime, TimeUnit.SECONDS)
                 .addInterceptor(LogInterceptor(okHttpLog))
+                .addInterceptor(HeadIntercept())
+                .addInterceptor(CookieIntercept())
                 .cache(cache)
                 .build()
         }
@@ -75,17 +79,38 @@ class OkHttpUtil private constructor() {
         }
     }
 
-    // 可以对请求头参数作统一处理，通过下面的`addHeader()`方法
+    // add Cookie
     class HeadIntercept : Interceptor {
-        override fun intercept(chain: Interceptor.Chain?): Response? {
-            return chain?.let {
-                it.proceed(
-                    it.request()
-                        .newBuilder()
-                        .addHeader("key", "key")
-                        .build()
-                )
+        override fun intercept(chain: Interceptor.Chain): Response {
+            val request: Request = chain.request()
+            val builder: Request.Builder = request.newBuilder()
+            builder.addHeader("Content-type", "application/json; charset=utf-8")
+            val domain: String = request.url().host()
+            if (domain.isNotEmpty()) {
+                val cookies: String = App.mInstance.getSP(Constant.SP_COOKIE, "") as String
+                builder.addHeader(Constant.COOKIE, cookies)
             }
+            return chain.proceed(builder.build())
+        }
+    }
+
+    /**
+     * save Cookie
+     */
+    class CookieIntercept : Interceptor {
+        override fun intercept(chain: Interceptor.Chain): Response {
+            val request: Request = chain.request()
+            val response: Response = chain.proceed(request)
+            val requestUrl: String = request.url().toString()
+            if ((requestUrl.contains(Constant.wan_login)
+                        || requestUrl.contains(Constant.wan_register))
+                && response.headers(Constant.SET_COOKIE).isNotEmpty()
+            ) {
+                val cookies: MutableList<String> = response.headers(Constant.SET_COOKIE)
+                val cookie: String = CookieUtil.encodeCookie(cookies)
+                CookieUtil.saveCookie(cookie)
+            }
+            return response
         }
     }
 }

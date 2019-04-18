@@ -6,14 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.MainActivity"
-        android:background="#e8e8eb"
-        android:clipChildren="false"
-        android:layerType="software">
+        android:background="#e8e8eb">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/coordinator"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:layerType="software">
 
         <RelativeLayout
                 android:id="@+id/rl_search"

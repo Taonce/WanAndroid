@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp">
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/tv_item_collection_title"
+              android:textSize="14sp"
+              android:textColor="@color/black"
+              tools:text="@string/app_name"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/tv_item_collection_publish_time"
+              android:textSize="12sp"
+              tools:text="@string/app_name"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/tv_item_collection_title"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/tv_item_collection_collected_time"
+              android:textSize="12sp"
+              tools:text="@string/app_name"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/tv_item_collection_publish_time"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+              android:id="@+id/tv_item_collection_author"
+              android:textSize="12sp"
+              tools:text="@string/app_name"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toBottomOf="@id/tv_item_collection_collected_time"/>
+
+    <View android:layout_width="match_parent" android:layout_height="0.5dp"
+          android:background="@color/floatButton"
+          app:layout_constraintTop_toBottomOf="@id/tv_item_collection_author"
+          app:layout_constraintBottom_toBottomOf="parent"
+          android:layout_marginTop="20dp"/>
+
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+               android:id="@+id/iv_item_collection"
+               android:contentDescription="@null"
+               android:src="@mipmap/collection"
+               app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

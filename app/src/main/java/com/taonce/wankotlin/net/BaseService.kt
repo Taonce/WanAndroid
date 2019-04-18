@@ -103,8 +103,11 @@ interface BaseService {
     @GET(value = Constant.wan_banner)
     fun getBanner(): Observable<BannerBean>
 
+    /**
+     * 收藏列表
+     */
     @GET(value = Constant.wan_collect + "{index}/json")
     fun getCollectionList(
         @Path(value = "index") index: Int = 0
-    ): Observable<BaseBean>
+    ): Observable<CollectionListBean>
 }

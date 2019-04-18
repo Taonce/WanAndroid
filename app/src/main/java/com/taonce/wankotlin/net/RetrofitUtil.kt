@@ -28,7 +28,7 @@ class RetrofitUtil private constructor() {
     private fun getRetrofit(): Retrofit? {
         if (null == retrofit) {
             retrofit = Retrofit.Builder()
-                .baseUrl(Constant.base_url)
+                .baseUrl(Constant.BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient)

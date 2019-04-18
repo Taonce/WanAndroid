@@ -44,14 +44,14 @@ abstract class BaseAdapter<T>(
 
     override fun onBindViewHolder(holder: BaseHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            showDebug(msg = "item click $position, mHeadView is ${mHeadView == null} null")
+            showDebug(msg = "item click $position, mHeadView is ${mHeadView == null} place_holder")
             // 这里一定要实现闭包的invoke()方法
             if (mHeadView == null) {
                 mItemClick?.invoke(position)
-                showDebug(msg = "item click $position, mItemClick is ${mItemClick == null} null")
+                showDebug(msg = "item click $position, mItemClick is ${mItemClick == null} place_holder")
             } else {
                 mItemClick?.invoke(position - 1)
-                showDebug(msg = "item click $position, mItemClick is ${mItemClick == null} null")
+                showDebug(msg = "item click $position, mItemClick is ${mItemClick == null} place_holder")
             }
         }
         holder.itemView.setOnLongClickListener {
@@ -105,27 +105,16 @@ abstract class BaseAdapter<T>(
     }
 
     /**
-     * 添加数据
+     * 添加数据，指定位置刷新
      * [listData]：添加的数据
      * [isDelete]：是否删除原来的数据
      */
-    fun addListData(listData: MutableList<T>, isDelete: Boolean) {
+    fun addListData(listData: MutableList<T>, isDelete: Boolean = false) {
         if (isDelete) {
             mData?.clear()
         }
         mData?.addAll(listData)
-        notifyDataSetChanged()
-    }
-
-    /**
-     * 添加数据，指定位置刷新
-     */
-    fun addListData(listData: MutableList<T>, isDelete: Boolean = false, refreshIndex: Int = 0) {
-        if (isDelete) {
-            mData?.clear()
-        }
-        mData?.addAll(listData)
-        notifyItemChanged(refreshIndex)
+        notifyItemChanged(itemCount)
     }
 
     /**

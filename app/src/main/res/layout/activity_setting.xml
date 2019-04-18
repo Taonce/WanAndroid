@@ -41,6 +41,7 @@
             android:id="@+id/view_setting_one"
             android:layout_width="match_parent"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_collection"
+            android:background="@color/floatButton"
             android:layout_marginStart="20dp"
             android:layout_height="0.5dp"/>
 
@@ -60,6 +61,7 @@
             android:layout_width="match_parent"
             app:layout_constraintTop_toBottomOf="@id/tv_setting_version"
             android:layout_marginStart="20dp"
+            android:background="@color/floatButton"
             android:layout_height="0.5dp"/>
 
     <TextView

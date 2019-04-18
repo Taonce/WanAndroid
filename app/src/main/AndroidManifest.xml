@@ -33,6 +33,7 @@
         <activity android:name=".ui.SearchActivity"/>
         <activity android:name=".ui.SearchResultActivity"/>
         <activity android:name=".ui.SettingActivity"/>
+        <activity android:name=".ui.CollectionListActivity"/>
     </application>
 
 </manifest>

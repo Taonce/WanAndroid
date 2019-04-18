@@ -1,11 +1,15 @@
 package com.taonce.wankotlin.ui
 
+import android.app.Activity
+import android.content.Intent
 import com.taonce.utilmodule.getSP
 import com.taonce.utilmodule.getVersionName
+import com.taonce.utilmodule.putSP
 import com.taonce.utilmodule.start
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.base.BaseMVPActivity
+import com.taonce.wankotlin.base.Constant
 import com.taonce.wankotlin.bean.LoginBean
 import com.taonce.wankotlin.contract.ILogoutView
 import com.taonce.wankotlin.net.BaseObserver
@@ -23,12 +27,7 @@ class SettingActivity : BaseMVPActivity<ILogoutView, LogoutPresenter>(), ILogout
     override fun getLayoutId(): Int = R.layout.activity_setting
 
     override fun initView() {
-        userName = getSP("userName", "") as String
-        tv_setting_name.text = if (userName.isEmpty()) {
-            this.getText(R.string.clickLogin)
-        } else {
-            userName
-        }
+        refreshUserName()
         tv_setting_version_number.text = getVersionName()
     }
 
@@ -39,19 +38,10 @@ class SettingActivity : BaseMVPActivity<ILogoutView, LogoutPresenter>(), ILogout
         tv_setting_quit.setOnClickListener { mPresenter.logout() }
         tv_setting_name.setOnClickListener {
             if (userName.isEmpty())
-                start(LoginActivity::class.java)
+                start(LoginActivity::class.java, requestCode = Constant.SETTING2LOGIN)
         }
         tv_setting_collection.setOnClickListener {
-            RetrofitUtil.mInstance.getService()
-                .getCollectionList()
-                .compose(RxSchedulers.observableTransformer())
-                .subscribe(object : BaseObserver<BaseBean> {
-                    override fun onSuccess(value: BaseBean) {
-                    }
-
-                    override fun onFailed() {
-                    }
-                })
+            start(CollectionListActivity::class.java)
         }
         tv_setting_about.setOnClickListener { }
     }
@@ -59,8 +49,22 @@ class SettingActivity : BaseMVPActivity<ILogoutView, LogoutPresenter>(), ILogout
     override fun getPresenter(): LogoutPresenter = LogoutPresenter(this)
 
     override fun showLogout(bean: LoginBean) {
-        userName = getSP("userName", "") as String
-        tv_setting_name.text = this.getText(R.string.clickLogin)
+        refreshUserName()
+    }
+
+    private fun refreshUserName() {
+        userName = getSP(Constant.SP_USERNAME, "") as String
+        tv_setting_name.text = if (userName.isEmpty()) {
+            this.getText(R.string.clickLogin)
+        } else {
+            userName
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == RESULT_OK && requestCode == Constant.SETTING2LOGIN) {
+            refreshUserName()
+        }
     }
 }
 

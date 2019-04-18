@@ -4,13 +4,14 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.text.TextUtils
 import android.view.View
 import androidx.core.view.marginStart
-import com.taonce.utilmodule.*
+import com.taonce.utilmodule.getDeviceWidth
+import com.taonce.utilmodule.putSP
+import com.taonce.utilmodule.showInfo
 import com.taonce.wankotlin.R
-import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.base.BaseMVPActivity
+import com.taonce.wankotlin.base.Constant
 import com.taonce.wankotlin.bean.LoginBean
 import com.taonce.wankotlin.contract.ILoginView
 import com.taonce.wankotlin.presenter.LoginPresenter
@@ -67,8 +68,14 @@ class LoginActivity : BaseMVPActivity<ILoginView, LoginPresenter>(), ILoginView 
     override fun getPresenter(): LoginPresenter = LoginPresenter(this)
 
     override fun showLoginResult(bean: LoginBean) {
-        putSP("userName", bean.data.username)
+        putSP(Constant.SP_USERNAME, bean.data.username)
+        setResult(Constant.SETTING2LOGIN)
         finish()
+    }
+
+    override fun onBackPressed() {
+        setResult(Constant.SETTING2LOGIN)
+        super.onBackPressed()
     }
 
     private fun translate() {

@@ -32,7 +32,6 @@ class ChapterArticleActivity
     private var mHistoryData: MutableList<WxHistoryBean.Data.DatasItem> = mutableListOf()
     private lateinit var chapterName: String
     private var index = 0
-    private var updateIndex: Int = 0
 
     override fun getLayoutId(): Int = R.layout.activity_chapter_article
 
@@ -65,9 +64,7 @@ class ChapterArticleActivity
 
     override fun showWxHistory(wxHistoryBean: MutableList<WxHistoryBean.Data.DatasItem>) {
         index++
-        updateIndex = if (mHistoryData.isEmpty()) 0 else mHistoryData.size
-        mHistoryData.addAll(wxHistoryBean)
-        mAdapter?.addListData(wxHistoryBean, refreshIndex = updateIndex)
+        mAdapter?.addListData(wxHistoryBean)
     }
 
     override fun refreshFinished() {

@@ -18,7 +18,7 @@ const val fileName = "share_preference"
  * [key]-[value] 键值对
  */
 fun Context.putSP(key: String, value: Any) {
-    val sp: SharedPreferences = this.getSharedPreferences(fileName, Context.MODE_PRIVATE)
+    val sp: SharedPreferences by lazy { this.getSharedPreferences(fileName, Context.MODE_PRIVATE) }
     when (value) {
         is String -> sp.edit().putString(key, value).apply()
         is Int -> sp.edit().putInt(key, value).apply()
@@ -34,7 +34,7 @@ fun Context.putSP(key: String, value: Any) {
  * [key]-[value] 键值对
  */
 fun Context.getSP(key: String, defaultValue: Any): Any? {
-    val sp: SharedPreferences = this.getSharedPreferences(fileName, Context.MODE_PRIVATE)
+    val sp: SharedPreferences by lazy { this.getSharedPreferences(fileName, Context.MODE_PRIVATE) }
     when (defaultValue) {
         is String -> return sp.getString(key, defaultValue)
         is Int -> return sp.getInt(key, defaultValue)
