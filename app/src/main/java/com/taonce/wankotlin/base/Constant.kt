@@ -54,8 +54,8 @@ object Constant {
     const val wan_collect = "lg/collect/list/" // index/json: 'index' in url
     const val wan_collect_inner = "lg/collect/1165/json" // post "article_id" in url
     const val wan_collect_out = "lg/collect/add/json" // post title,author,link in body
-    const val wan_unCollect_article = "lg/uncollect_originId/2333/json" // post "article_id" in url
-    const val wan_unCollect = "lg/uncollect/2805/json" // post "article_id" in url, originId in body
+    const val wan_unCollect_article = "lg/uncollect_originId/" // post "article_id" in url
+    const val wan_unCollect = "lg/uncollect/" // post "article_id" in url, originId in body
 
     /**
      * 搜索

@@ -2,7 +2,9 @@ package com.taonce.wankotlin.ui
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.taonce.utilmodule.toast
 import com.taonce.wankotlin.R
+import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.base.BaseMVPActivity
 import com.taonce.wankotlin.bean.CollectionListBean
 import com.taonce.wankotlin.contract.ICollectionListView
@@ -17,6 +19,7 @@ class CollectionListActivity : BaseMVPActivity<ICollectionListView, CollectionLi
     private lateinit var mAdapter: CollectionListAdapter
     private val mCollectionListBean: MutableList<CollectionListBean.Data.DatasItem> = mutableListOf()
     private var index: Int = 0
+    private var deletePosition: Int = 0
 
     override fun getLayoutId(): Int = R.layout.activity_collection_list
 
@@ -44,6 +47,11 @@ class CollectionListActivity : BaseMVPActivity<ICollectionListView, CollectionLi
                 mCollectionListBean[it].link
             )
         }
+        mAdapter.setCancelListener {
+            deletePosition = it
+            val itemData: CollectionListBean.Data.DatasItem = mCollectionListBean[it]
+            mPresenter.cancelCollection(itemData.id, itemData.originId)
+        }
     }
 
     override fun getPresenter(): CollectionListPresenter = CollectionListPresenter(this)
@@ -67,6 +75,10 @@ class CollectionListActivity : BaseMVPActivity<ICollectionListView, CollectionLi
             tv_collection_null.visibility = View.GONE
             rv_collection_list.visibility = View.VISIBLE
         }
+    }
+
+    override fun showCancel(baseBean: BaseBean) {
+        mAdapter.deletePositionData(deletePosition)
     }
 }
 

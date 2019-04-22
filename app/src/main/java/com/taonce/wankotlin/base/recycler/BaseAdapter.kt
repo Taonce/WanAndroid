@@ -44,14 +44,11 @@ abstract class BaseAdapter<T>(
 
     override fun onBindViewHolder(holder: BaseHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            showDebug(msg = "item click $position, mHeadView is ${mHeadView == null} place_holder")
             // 这里一定要实现闭包的invoke()方法
             if (mHeadView == null) {
                 mItemClick?.invoke(position)
-                showDebug(msg = "item click $position, mItemClick is ${mItemClick == null} place_holder")
             } else {
                 mItemClick?.invoke(position - 1)
-                showDebug(msg = "item click $position, mItemClick is ${mItemClick == null} place_holder")
             }
         }
         holder.itemView.setOnLongClickListener {
@@ -125,7 +122,7 @@ abstract class BaseAdapter<T>(
         // 防止position越界
         if (position in 1..(itemCount - 1)) {
             mData?.remove(mData[position])
-            notifyDataSetChanged()
+            notifyItemRemoved(position)
         } else {
             showError(msg = "delete item failed, position error!")
         }

@@ -19,10 +19,21 @@ class CollectionListAdapter(
     override fun convert(holder: BaseHolder, position: Int) {
         holder.getView<TextView>(R.id.tv_item_collection_title).text = mCollectionData[position].title
         holder.getView<TextView>(R.id.tv_item_collection_publish_time).text =
-            String.format(context.resources.getString(R.string.published_time), mCollectionData[position].publishTime.formatDate2Day())
+            String.format(
+                context.resources.getString(R.string.published_time),
+                mCollectionData[position].publishTime.formatDate2Day()
+            )
         holder.getView<TextView>(R.id.tv_item_collection_collected_time).text =
             String.format(context.resources.getString(R.string.collected_time), mCollectionData[position].niceDate)
         holder.getView<TextView>(R.id.tv_item_collection_author).text =
             String.format(context.resources.getString(R.string.author), mCollectionData[position].author)
+        holder.getView<ImageView>(R.id.iv_item_collection).setOnClickListener {
+            listener?.invoke(position)
+        }
+    }
+
+    private var listener: ((position: Int) -> Unit)? = null
+    fun setCancelListener(listener: ((position: Int) -> Unit)?) {
+        this.listener = listener
     }
 }

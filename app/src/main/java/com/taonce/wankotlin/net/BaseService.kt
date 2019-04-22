@@ -110,4 +110,11 @@ interface BaseService {
     fun getCollectionList(
         @Path(value = "index") index: Int = 0
     ): Observable<CollectionListBean>
+
+    @POST(value = Constant.wan_unCollect + "{id}/json")
+    @FormUrlEncoded
+    fun cancelCollection(
+        @Path(value = "id") id: Int = -1,
+        @Field(value = "originId") originId: Int = -1
+    ): Observable<BaseBean>
 }
