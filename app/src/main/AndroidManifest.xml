@@ -17,14 +17,9 @@
             android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ui.MainActivity"
                   android:windowSoftInputMode="adjustNothing">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity android:name=".ui.LoginActivity"
                   android:windowSoftInputMode="adjustResize">
-
         </activity>
         <activity android:name=".ui.CommonX5Activity">
 
@@ -34,6 +29,13 @@
         <activity android:name=".ui.SearchResultActivity"/>
         <activity android:name=".ui.SettingActivity"/>
         <activity android:name=".ui.CollectionListActivity"/>
+        <activity android:name=".ui.SplashActivity"
+                  android:theme="@style/AppSplash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

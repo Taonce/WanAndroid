@@ -88,7 +88,7 @@ class CommonX5Activity : BaseActivity() {
  * [url] web link
  */
 fun toCommonX5Activity(context: Context, url: String) {
-    val intent: Intent = Intent(context, CommonX5Activity::class.java)
+    val intent = Intent(context, CommonX5Activity::class.java)
     intent.putExtra(Constant.X5_URL, url)
     context.startActivity(intent)
 }

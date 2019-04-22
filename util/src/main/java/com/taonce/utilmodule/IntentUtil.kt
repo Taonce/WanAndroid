@@ -32,8 +32,7 @@ fun <T : Activity> Activity.start(
         if (map.isNotEmpty()) {
             map.forEach {
                 val key: String = it.key
-                val value: Any = it.value
-                when (value) {
+                when (val value: Any = it.value) {
                     is String -> intent.putExtra(key, value)
                     is Int -> intent.putExtra(key, value)
                     is Float -> intent.putExtra(key, value)
@@ -77,8 +76,7 @@ fun <T : Activity> Fragment.start(
         if (map.isNotEmpty()) {
             map.forEach {
                 val key: String = it.key
-                val value: Any = it.value
-                when (value) {
+                when (val value: Any = it.value) {
                     is String -> intent.putExtra(key, value)
                     is Int -> intent.putExtra(key, value)
                     is Float -> intent.putExtra(key, value)

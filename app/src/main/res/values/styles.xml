@@ -19,4 +19,9 @@
         <item name="android:windowBackground">@color/transparent</item><!--背景透明-->
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
     </style>
+
+    <style name="AppSplash" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@mipmap/splash</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 </resources>
