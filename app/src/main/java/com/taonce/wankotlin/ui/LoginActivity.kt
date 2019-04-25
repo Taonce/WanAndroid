@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.app.Activity
 import android.view.View
 import androidx.core.view.marginStart
 import com.taonce.utilmodule.getDeviceWidth
@@ -69,12 +70,12 @@ class LoginActivity : BaseMVPActivity<ILoginView, LoginPresenter>(), ILoginView 
 
     override fun showLoginResult(bean: LoginBean) {
         putSP(Constant.SP_USERNAME, bean.data.username)
-        setResult(Constant.SETTING2LOGIN)
+        setResult(Activity.RESULT_OK)
         finish()
     }
 
     override fun onBackPressed() {
-        setResult(Constant.SETTING2LOGIN)
+        setResult(Activity.RESULT_OK)
         super.onBackPressed()
     }
 

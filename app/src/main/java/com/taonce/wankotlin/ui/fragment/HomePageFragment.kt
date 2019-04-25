@@ -8,11 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.taonce.utilmodule.formatDate2Day
+import com.taonce.utilmodule.isShow
 import com.taonce.utilmodule.showDebug
 import com.taonce.utilmodule.showInfo
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseFragment
 import com.taonce.wankotlin.base.Constant
+import com.taonce.wankotlin.bean.ArticleBean
 import com.taonce.wankotlin.bean.BannerBean
 import com.taonce.wankotlin.bean.HomePageBean
 import com.taonce.wankotlin.contract.IHomePageView
@@ -72,8 +75,8 @@ class HomePageFragment : BaseFragment(), IHomePageView {
     override fun initEvent() {
         banner?.setOnBannerListener {
             val urlFrom: String = mBannerUrl[it]
-            if (!urlFrom.isEmpty()) {
-                toCommonX5Activity(this.context!!, urlFrom)
+            if (urlFrom.isNotEmpty()) {
+                toCommonX5Activity(this.context!!, urlFrom, isShow = false)
             } else {
                 showInfo(msg = "banner url is empty! ")
             }
@@ -90,9 +93,17 @@ class HomePageFragment : BaseFragment(), IHomePageView {
             mAdapter = HomePageAdapter(this.context!!, R.layout.item_home_article, mArticleData, mHeadView!!)
             mAdapter?.setOnItemClickListener { index ->
                 showDebug(msg = "item click enter, position is $index")
-                val articleUrl: String = mArticleData[index].link
-                if (!articleUrl.isEmpty()) {
-                    toCommonX5Activity(this.context!!, articleUrl)
+                val item: HomePageBean.Data.DatasItem = mArticleData[index]
+                if (item.link.isNotEmpty()) {
+                    toCommonX5Activity(
+                        this.context!!, url = item.link,
+                        isCollected = item.collect,
+                        articleId = item.id,
+                        collectTime = item.niceDate,
+                        publishTime = item.publishTime.formatDate2Day(),
+                        author = item.author,
+                        title = item.title
+                    )
                 } else {
                     showInfo(msg = "article url is empty! ")
                 }

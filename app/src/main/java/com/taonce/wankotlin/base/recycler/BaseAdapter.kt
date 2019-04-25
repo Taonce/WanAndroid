@@ -80,12 +80,10 @@ abstract class BaseAdapter<T>(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when {
-            mHeadView == null && mFootView == null -> type_normal
-            mHeadView != null && position == 0 -> type_header
-            mFootView != null && position == itemCount - 1 -> type_footer
-            else -> type_normal
-        }
+        mHeadView ?: mFootView ?: return type_normal
+        mHeadView?.run { if (position == 0) return type_header }
+        mFootView?.run { if (position == itemCount - 1) return type_footer }
+        return type_normal
     }
 
     /**
@@ -120,9 +118,11 @@ abstract class BaseAdapter<T>(
      */
     fun deletePositionData(position: Int) {
         // 防止position越界
-        if (position in 1..(itemCount - 1)) {
-            mData?.remove(mData[position])
+        if (position in 0 until itemCount) {
+            mData?.removeAt(position)
             notifyItemRemoved(position)
+            if (position != itemCount)
+                notifyItemRangeChanged(position, itemCount - position)
         } else {
             showError(msg = "delete item failed, position error!")
         }

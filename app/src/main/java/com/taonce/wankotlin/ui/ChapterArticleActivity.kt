@@ -4,6 +4,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import com.taonce.utilmodule.formatDate2Day
 import com.taonce.utilmodule.showDebug
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseMVPActivity
@@ -54,7 +55,17 @@ class ChapterArticleActivity
     override fun initEvent() {
         iv_head_back.setOnClickListener { finish() }
         mAdapter?.setOnItemClickListener { position ->
-            toCommonX5Activity(this@ChapterArticleActivity, mHistoryData[position].link)
+            val item:WxHistoryBean.Data.DatasItem = mHistoryData[position]
+            toCommonX5Activity(
+                this@ChapterArticleActivity,
+                url = item.link,
+                isCollected = item.collect,
+                articleId = item.id,
+                collectTime = item.niceDate,
+                publishTime = item.publishTime.formatDate2Day(),
+                author = item.author,
+                title =  item.title
+            )
         }
         srl_chapter_article.setOnRefreshListener { mPresenter.getWxHistory(chapterId.toString(), index) }
         srl_chapter_article.setOnLoadMoreListener { mPresenter.getWxHistory(chapterId.toString(), index) }

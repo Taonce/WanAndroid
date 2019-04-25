@@ -2,7 +2,7 @@ package com.taonce.wankotlin.presenter
 
 import com.taonce.wankotlin.base.BasePresenter
 import com.taonce.wankotlin.bean.HotKeyBean
-import com.taonce.wankotlin.bean.HotKeyDB
+import com.taonce.wankotlin.bean.db.HotKeyDB
 import com.taonce.wankotlin.contract.IHotKeyModel
 import com.taonce.wankotlin.contract.IHotKeyView
 import com.taonce.wankotlin.model.HotKeyModel

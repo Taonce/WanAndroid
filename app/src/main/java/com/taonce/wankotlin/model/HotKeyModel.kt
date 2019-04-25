@@ -1,7 +1,7 @@
 package com.taonce.wankotlin.model
 
 import com.taonce.wankotlin.bean.HotKeyBean
-import com.taonce.wankotlin.bean.HotKeyDB
+import com.taonce.wankotlin.bean.db.HotKeyDB
 import com.taonce.wankotlin.contract.IHotKeyModel
 import com.taonce.wankotlin.net.BaseObserver
 import com.taonce.wankotlin.net.RetrofitUtil

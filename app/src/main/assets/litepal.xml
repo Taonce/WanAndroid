@@ -3,6 +3,7 @@
     <dbname value="wan"/>
     <version value="1"/>
     <list>
-        <mapping class="com.taonce.wankotlin.bean.HotKeyDB"/>
+        <mapping class="com.taonce.wankotlin.bean.db.HotKeyDB"/>
+        <mapping class="com.taonce.wankotlin.bean.db.CollectionDB"/>
     </list>
 </litepal>

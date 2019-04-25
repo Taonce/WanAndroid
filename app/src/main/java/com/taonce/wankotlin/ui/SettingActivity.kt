@@ -1,11 +1,9 @@
 package com.taonce.wankotlin.ui
 
 import android.app.Activity
+import android.app.Dialog
 import android.content.Intent
-import com.taonce.utilmodule.getSP
-import com.taonce.utilmodule.getVersionName
-import com.taonce.utilmodule.putSP
-import com.taonce.utilmodule.start
+import com.taonce.utilmodule.*
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.base.BaseMVPActivity
@@ -16,6 +14,7 @@ import com.taonce.wankotlin.net.BaseObserver
 import com.taonce.wankotlin.net.RetrofitUtil
 import com.taonce.wankotlin.net.RxSchedulers
 import com.taonce.wankotlin.presenter.LogoutPresenter
+import com.taonce.wankotlin.ui.dialog.SettingDialog
 import kotlinx.android.synthetic.main.activity_setting.*
 
 
@@ -23,19 +22,26 @@ class SettingActivity : BaseMVPActivity<ILogoutView, LogoutPresenter>(), ILogout
 
     private val mPresenter: LogoutPresenter by lazy { getPresenter() }
     private lateinit var userName: String
+    private lateinit var mDialog: SettingDialog
 
     override fun getLayoutId(): Int = R.layout.activity_setting
 
     override fun initView() {
         refreshUserName()
         tv_setting_version_number.text = getVersionName()
+        mDialog = SettingDialog(this@SettingActivity, this.getString(R.string.logout))
+        mDialog.run {
+            setEnterListener { mPresenter.logout() }
+        }
     }
 
     override fun initData() {
     }
 
     override fun initEvent() {
-        tv_setting_quit.setOnClickListener { mPresenter.logout() }
+        tv_setting_quit.setOnClickListener {
+            mDialog.show()
+        }
         tv_setting_name.setOnClickListener {
             if (userName.isEmpty())
                 start(LoginActivity::class.java, requestCode = Constant.SETTING2LOGIN)

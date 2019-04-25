@@ -3,6 +3,7 @@ package com.taonce.wankotlin.ui
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import com.taonce.utilmodule.formatDate2Day
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseMVPActivity
 import com.taonce.wankotlin.base.Constant
@@ -53,7 +54,16 @@ class SearchResultActivity : BaseMVPActivity<ISearchView, SearchPresenter>(),
 
     override fun initEvent() {
         mAdapter?.setOnItemClickListener { position ->
-            toCommonX5Activity(this@SearchResultActivity, mQueryResultData[position].link)
+            val item: QueryBean.Data.DatasItem = mQueryResultData[position]
+            toCommonX5Activity(
+                this@SearchResultActivity, url = item.link,
+                isCollected = item.collect,
+                articleId = item.id,
+                collectTime = item.niceDate,
+                publishTime = item.publishTime.formatDate2Day(),
+                author = item.author,
+                title = item.title
+            )
         }
         srl_search_result.setOnRefreshListener { mPresenter.getSearch(index, mKey) }
         srl_search_result.setOnLoadMoreListener { mPresenter.getSearch(index, mKey) }

@@ -3,6 +3,7 @@ package com.taonce.wankotlin.net
 import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.base.Constant
 import com.taonce.wankotlin.bean.*
+import io.reactivex.CompletableOnSubscribe
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -111,10 +112,29 @@ interface BaseService {
         @Path(value = "index") index: Int = 0
     ): Observable<CollectionListBean>
 
+    /**
+     * 取消收藏，收藏列表界面的取消收藏
+     */
     @POST(value = Constant.wan_unCollect + "{id}/json")
     @FormUrlEncoded
     fun cancelCollection(
         @Path(value = "id") id: Int = -1,
         @Field(value = "originId") originId: Int = -1
+    ): Observable<BaseBean>
+
+    /**
+     * 取消收藏，文章详情界面
+     */
+    @POST(value = Constant.wan_unCollect_article + "{id}/json")
+    fun unCollection(
+        @Path(value = "id") id: Int = -1
+    ): Observable<BaseBean>
+
+    /**
+     * 收藏站内文章
+     */
+    @POST(value = Constant.wan_collect_inner+"{id}/json")
+    fun collectionInner(
+        @Path(value = "id") id: Int = -1
     ): Observable<BaseBean>
 }

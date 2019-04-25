@@ -10,7 +10,7 @@ import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseMVPActivity
 import com.taonce.wankotlin.base.Constant
 import com.taonce.wankotlin.bean.HotKeyBean
-import com.taonce.wankotlin.bean.HotKeyDB
+import com.taonce.wankotlin.bean.db.HotKeyDB
 import com.taonce.wankotlin.contract.IHotKeyView
 import com.taonce.wankotlin.presenter.HotKeyPresenter
 import com.taonce.wankotlin.ui.adapter.HotKeyDBAdapter

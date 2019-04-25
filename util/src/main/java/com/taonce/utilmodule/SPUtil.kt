@@ -31,7 +31,7 @@ fun Context.putSP(key: String, value: Any) {
 
 /**
  * 向SP中取出数据
- * [key]-[value] 键值对
+ * [key]-[defaultValue] 键值对
  */
 fun Context.getSP(key: String, defaultValue: Any): Any? {
     val sp: SharedPreferences by lazy { this.getSharedPreferences(fileName, Context.MODE_PRIVATE) }

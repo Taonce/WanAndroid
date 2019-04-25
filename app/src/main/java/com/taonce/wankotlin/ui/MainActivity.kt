@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.taonce.utilmodule.showDebug
 import com.taonce.utilmodule.showSnackBar
 import com.taonce.utilmodule.start
 import com.taonce.utilmodule.toast
@@ -13,7 +14,11 @@ import com.taonce.wankotlin.ui.fragment.HomePageFragment
 import com.taonce.wankotlin.ui.fragment.HotKeyFragment
 import com.taonce.wankotlin.ui.fragment.TreeFragment
 import com.taonce.wankotlin.ui.fragment.WxChapterFragment
+import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : BaseActivity() {
 

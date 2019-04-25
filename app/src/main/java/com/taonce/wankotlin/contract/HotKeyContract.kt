@@ -1,7 +1,7 @@
 package com.taonce.wankotlin.contract
 
 import com.taonce.wankotlin.bean.HotKeyBean
-import com.taonce.wankotlin.bean.HotKeyDB
+import com.taonce.wankotlin.bean.db.HotKeyDB
 
 
 /**

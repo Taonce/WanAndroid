@@ -22,6 +22,13 @@ object Constant {
 
     // intent tag
     const val X5_URL = "url"
+    const val X5_IS_COLLECTED = "isCollected"
+    const val X5_ARTICLE_ID = "articleId"
+    const val X5_IS_SHOW = "isShow"
+    const val X5_COLLECTED_TIME = "collectTime"
+    const val X5_PUBLISH_TIME = "publishTime"
+    const val X5_ARTICLE_TITLE = "title"
+    const val X5_AUTHOR = "author"
     const val CHAPTER_ID = "chapterId"
     const val CHAPTER_NAME = "chapterName"
     const val SEARCH_KEY = "searchKey"
@@ -52,7 +59,7 @@ object Constant {
      * 收藏
      */
     const val wan_collect = "lg/collect/list/" // index/json: 'index' in url
-    const val wan_collect_inner = "lg/collect/1165/json" // post "article_id" in url
+    const val wan_collect_inner = "lg/collect/" // post "article_id" in url
     const val wan_collect_out = "lg/collect/add/json" // post title,author,link in body
     const val wan_unCollect_article = "lg/uncollect_originId/" // post "article_id" in url
     const val wan_unCollect = "lg/uncollect/" // post "article_id" in url, originId in body

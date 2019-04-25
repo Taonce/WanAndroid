@@ -2,11 +2,11 @@ package com.taonce.wankotlin.ui
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.taonce.utilmodule.toast
+import com.taonce.utilmodule.showDebug
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseBean
 import com.taonce.wankotlin.base.BaseMVPActivity
-import com.taonce.wankotlin.bean.CollectionListBean
+import com.taonce.wankotlin.bean.db.CollectionDB
 import com.taonce.wankotlin.contract.ICollectionListView
 import com.taonce.wankotlin.presenter.CollectionListPresenter
 import com.taonce.wankotlin.ui.adapter.CollectionListAdapter
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.item_common_head.*
 class CollectionListActivity : BaseMVPActivity<ICollectionListView, CollectionListPresenter>(), ICollectionListView {
     private val mPresenter: CollectionListPresenter by lazy { getPresenter() }
     private lateinit var mAdapter: CollectionListAdapter
-    private val mCollectionListBean: MutableList<CollectionListBean.Data.DatasItem> = mutableListOf()
+    private val mCollectionListBean: MutableList<CollectionDB> = mutableListOf()
     private var index: Int = 0
     private var deletePosition: Int = 0
 
@@ -41,26 +41,34 @@ class CollectionListActivity : BaseMVPActivity<ICollectionListView, CollectionLi
     }
 
     override fun initEvent() {
+        iv_head_back.setOnClickListener { finish() }
         mAdapter.setOnItemClickListener {
+            val item: CollectionDB = mCollectionListBean[it]
             toCommonX5Activity(
                 this@CollectionListActivity,
-                mCollectionListBean[it].link
+                url = item.url,
+                isCollected = true,
+                articleId = item.articleId,
+                collectTime = item.collectTime,
+                publishTime = item.publishTime,
+                author = item.author,
+                title = item.title
             )
         }
         mAdapter.setCancelListener {
             deletePosition = it
-            val itemData: CollectionListBean.Data.DatasItem = mCollectionListBean[it]
-            mPresenter.cancelCollection(itemData.id, itemData.originId)
+            val itemData: CollectionDB = mCollectionListBean[it]
+            mPresenter.cancelCollection(itemData.articleId, itemData.originId)
         }
     }
 
     override fun getPresenter(): CollectionListPresenter = CollectionListPresenter(this)
 
-    override fun showCollectionList(collectionListBean: MutableList<CollectionListBean.Data.DatasItem>) {
+    override fun showCollectionList(collectionBean: MutableList<CollectionDB>) {
         isShowNull(false)
         index++
-        mCollectionListBean.addAll(collectionListBean)
-        mAdapter.addListData(collectionListBean)
+        mCollectionListBean.addAll(collectionBean)
+        mAdapter.addListData(collectionBean)
     }
 
     override fun showNull() {

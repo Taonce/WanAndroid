@@ -1,4 +1,4 @@
-package com.taonce.wankotlin.bean
+package com.taonce.wankotlin.bean.db
 
 import org.litepal.annotation.Column
 import org.litepal.crud.LitePalSupport

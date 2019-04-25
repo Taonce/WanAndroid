@@ -3,7 +3,10 @@ package com.taonce.wankotlin.ui
 import com.taonce.utilmodule.start
 import com.taonce.wankotlin.R
 import com.taonce.wankotlin.base.BaseActivity
-import kotlin.concurrent.thread
+import kotlinx.android.synthetic.main.activity_splash.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class SplashActivity : BaseActivity() {
 
@@ -16,10 +19,15 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun initEvent() {
-        Thread.sleep(1000L)
-        thread {
-            start(MainActivity::class.java, isFinished = true)
+        GlobalScope.launch {
+            delay(1000L)
+            jump2Main()
+        }
+        tv_splash_jump.setOnClickListener {
+            jump2Main()
         }
     }
+
+    private fun jump2Main(): Unit = start(MainActivity::class.java, isFinished = true)
 
 }

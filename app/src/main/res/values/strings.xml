@@ -12,7 +12,7 @@
     <string name="connect_timeout">连接超时</string>
     <string name="request_timeout">请求超时</string>
     <string name="parse_error">解析错误</string>
-    <string name="no_more">No More! </string>
+    <string name="no_more">No More!</string>
     <string name="no_content">空空如也~~</string>
 
     <string name="article">Article</string>
@@ -25,10 +25,20 @@
     <string name="about">关于我们</string>
     <string name="quit">退出登录</string>
     <string name="clickLogin">点击登录</string>
-    <string name="pleaseLogin">请先登录! </string>
-    <string name="logoutSuccess">Logout Success! </string>
+    <string name="pleaseLogin">请先登录!</string>
+    <string name="logoutSuccess">Logout Success!</string>
     <string name="version">当前版本:</string>
     <string name="author">作者: %1$s</string>
     <string name="collected_time">收藏时间: %1$s</string>
     <string name="published_time">发布时间: %1$s</string>
+    <string name="jump">跳过</string>
+    <string name="logout">Are you sure you want to quit?</string>
+    <string name="cancel">取消</string>
+    <string name="enter">确认</string>
+    <string name="collect_user">收藏(账号绑定)</string>
+    <string name="collect_offline">收藏(离线模式)</string>
+    <string name="un_collect">取消收藏</string>
+    <string name="collect_success">收藏成功! </string>
+    <string name="un_collect_success">取消收藏成功! </string>
+    <string name="collect_failed">已收藏本地! </string>
 </resources>

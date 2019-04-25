@@ -20,8 +20,15 @@
         <item name="android:backgroundDimEnabled">false</item><!--模糊-->
     </style>
 
-    <style name="AppSplash" parent="android:Theme.NoTitleBar.Fullscreen">
+    <style name="AppSplash" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:windowBackground">@mipmap/splash</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="PopAnimator">
+        <item name="android:windowEnterAnimation">@anim/pop_enter</item>
+        <item name="android:windowExitAnimation">@anim/pop_quit</item>
     </style>
 </resources>
