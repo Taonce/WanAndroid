@@ -14,6 +14,9 @@ import com.taonce.wankotlin.ui.fragment.HomePageFragment
 import com.taonce.wankotlin.ui.fragment.HotKeyFragment
 import com.taonce.wankotlin.ui.fragment.TreeFragment
 import com.taonce.wankotlin.ui.fragment.WxChapterFragment
+import com.taonce.wankotlin.util.DepthPageTransformer
+import com.taonce.wankotlin.util.RotaScalePageTransformer
+import com.taonce.wankotlin.util.ZoomOutPageTransformer
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -35,6 +38,7 @@ class MainActivity : BaseActivity() {
         vp_main.pageMargin = 16
         vp_main.currentItem = 0
         vp_main.offscreenPageLimit = 3
+//        vp_main.setPageTransformer(true, RotaScalePageTransformer())
     }
 
     override fun initEvent() {
