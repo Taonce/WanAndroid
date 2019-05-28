@@ -16,6 +16,10 @@
 </div>
 
 
+
+
+
+
 ## 目前已完成的功能：
 
 * 首页Banner
@@ -36,15 +40,26 @@
 ## 友情感谢：
 
 [Kotlin](https://github.com/JetBrains/kotlin)
+
 [AndroidX](https://developer.android.com/jetpack/androidx)
+
 [okhttp](https://github.com/square/okhttp)
+
 [retrofit](https://github.com/square/retrofit)
+
 [RxJava](https://github.com/ReactiveX/RxJava)
+
 [Glide](https://github.com/bumptech/glide)
+
 [Banner](https://github.com/youth5201314/banner)
+
 [FlowLayout](https://github.com/hongyangAndroid/FlowLayout)
+
 [LitePal](https://github.com/LitePalFramework/LitePal)
+
 [SmartRefreshLayout](https://github.com/scwang90/SmartRefreshLayout)
+
+
 
 
 
